@@ -39,9 +39,7 @@ db.getConnection((err) => {
   }
 });
 
-app.use("/", (req, res) => {
-  res.send("from backend side");
-});
+
 
 app.get("/users", (req, res) => {
   const sql = "select * from bankistregister";
