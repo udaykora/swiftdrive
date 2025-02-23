@@ -12,7 +12,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let response = await fetch(`https://swiftdrive.onrender.com//login`, {
+    let response = await fetch(`https://swiftdrive.onrender.com/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
