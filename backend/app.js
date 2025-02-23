@@ -39,8 +39,8 @@ db.getConnection((err) => {
   }
 });
 
-app.get("/", (req, res) => {
-  return res.json("from backend side");
+app.use("/", (req, res) => {
+  res.send("from backend side");
 });
 
 app.get("/users", (req, res) => {
