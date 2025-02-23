@@ -1,0 +1,260 @@
+/* Regular styling for larger screens */
+.users-data-container {
+  padding: 20px;
+  background-color: #f5f5f5; /* Light background color */
+  min-height: 100vh; /* Full height of the viewport */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-image: url("./—Pngtree—car\ rental\ broker\ or\ car_15188056.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.logout {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.price {
+  position: relative;
+  top: 39px;
+}
+.app-name12 {
+  position: relative;
+  right: 10px;
+  font-weight: bolder;
+  font-size: 24PX;
+}
+.petrol-svg,.diesel-svg,.electric-svg{
+ position: relative;
+ top: 2px;
+}
+
+.electric-svg{
+  top: 5px;
+  margin-right: 3px;
+}
+
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.users-data-table {
+  width: 100%;
+  max-width: 1000px; /* Limit the width of the table */
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+}
+
+.users-data-table th,
+.users-data-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.users-data-table th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.users-data-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.users-data-table td {
+  color: #555;
+}
+
+/* Style for the close button */
+.close-btns {
+  position: absolute;
+  top: 40px;
+  right: 280px;
+  background-color: red;
+  color: white;
+  border: none;
+  font-size: 20px;
+  border-radius: 20px;
+  height: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: darkred;
+}
+
+.buttonremove {
+  background-color: red;
+  border: none;
+  padding: 10px;
+  color: #f1f1f1;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Media Query for devices with a screen width of 374px or less */
+@media (max-width: 374px) {
+  .users-data-container {
+    padding: 10px;
+    background-size: contain; /* Adjust background image */
+    background-position: top center;
+    background-repeat: no-repeat;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .users-data-table {
+    width: 100%;
+    max-width: 100%;
+    font-size: 12px; /* Reduce font size for smaller screens */
+    border-collapse: collapse;
+  }
+
+  .users-data-table th,
+  .users-data-table td {
+    padding: 6px; /* Reduce padding */
+  }
+
+  .close-btns {
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
+    padding-left: 8px;
+    padding-right: 8px;
+    height: 25px;
+  }
+
+  .buttonremove {
+    font-size: 10px; /* Reduce button font size */
+    padding: 8px;
+  }
+
+  /* Make table horizontally scrollable */
+  .users-data-table-container {
+    overflow-x: auto; /* Allow horizontal scrolling */
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  /* Handle long text that might cause overflow */
+  .users-data-table td {
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis when text is too long */
+  }
+  .logout {
+    margin-left: 19px;
+    margin-top: 5px;
+    position: relative;
+    bottom: 15px;
+    font-size: 12px;
+  }
+
+  .bookings {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    background-color: blue;
+    color: gainsboro;
+    position: relative;
+    bottom: 14px;
+  }
+  .app-name12 {
+    position: relative;
+    bottom: 12px;
+    font-weight: bolder;
+  }
+
+  .price {
+    position: relative;
+    top: 39px;
+  }
+}
+
+@media (min-width: 374px) and (max-width: 424px) {
+  .app-name12 {
+    position: relative;
+    right: 10px;
+    font-weight: bolder;
+    font-size: medium;
+  }
+
+  .bookings {
+    position: relative;
+    left: 13px;
+  }
+  .price{
+    position: relative;
+        top: 39px;
+  }
+}
+
+@media (min-width: 425px) and (max-width: 767px) {
+  .app-name12 {
+    position: relative;
+    right: 10px;
+    font-weight: bolder;
+    font-size: large;
+  }
+
+  .bookings {
+    position: relative;
+    left: 13px;
+  }
+  .car-list12 {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    gap: 20px;
+    position: relative;
+    left: 23px;
+  }
+  .bookings {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    background-color: blue;
+    color: gainsboro;
+    position: relative;
+    left: -40px;
+  }
+  .price{
+    position: relative;
+        top: 39px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .app-name12 {
+    position: relative;
+    right: 10px;
+    font-weight: bolder;
+    font-size: 24PX;
+}
+.price{
+  position: relative;
+      top: 39px;
+}
+}

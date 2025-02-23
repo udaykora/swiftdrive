@@ -1,0 +1,255 @@
+/* thankyou.css */
+.thank-you-container22 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: "Arial", sans-serif;
+  background-color: #f8f8f8;
+  padding: 20px;
+  background-color: #9b94d1;
+  background-image: url("https://cdn.wallpapersafari.com/78/14/dFQR2j.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.thank-you-message22 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.thank-you-message22 h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.thank-you-message22 p {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.car-details22 {
+  display: flex;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 30px;
+  width: 600px;
+  background: linear-gradient(to right, #29323c, #485563);
+}
+
+.car-image22 {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+}
+
+.details22 {
+  padding: 20px;
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(182, 191, 194);
+  gap: 10px;
+}
+
+.details22 h2 {
+  color: #010101;
+  margin-bottom: 15px;
+  font-weight: bolder;
+}
+
+.detail-item22 {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.detail-label22 {
+  font-weight: bold;
+  margin-right: 10px;
+  color: #151414;
+  width: 120px;
+}
+
+.detail-value22 {
+  color: #333;
+}
+
+.back-home-button22 {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.back-home-button22:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 374px) {
+  .car-details22 {
+    display: flex;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 30px;
+    width: 250px;
+    height: 350px;
+    background: linear-gradient(to right, #29323c, #485563);
+    flex-direction: column;
+  }
+
+  .car-image22 {
+    width: 200px;
+    height: 150px;
+    object-fit: contain;
+    margin-left: 20px;
+  }
+
+  .details22 {
+    padding: 20px;
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(182, 191, 194);
+    /* gap: 10px; */
+    /* height: 11720px; */
+  }
+
+  .thank-you-container22 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: "Arial", sans-serif;
+    background-color: #f8f8f8;
+    padding: 20px;
+    background-color: #9b94d1;
+    background-image: url(https://cdn.wallpapersafari.com/78/14/dFQR2j.jpg);
+    background-position: center;
+    background-size: cover;
+  }
+
+
+
+
+}
+
+
+
+@media (min-width:375px) and (max-width:424px){
+  .car-details22 {
+    display: flex;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 30px;
+    width: 250px;
+    height: 350px;
+    background: linear-gradient(to right, #29323c, #485563);
+    flex-direction: column;
+  }
+
+  .car-image22 {
+    width: 200px;
+    height: 150px;
+    object-fit: contain;
+    margin-left: 20px;
+  }
+
+  .details22 {
+    padding: 20px;
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(182, 191, 194);
+    /* gap: 10px; */
+    /* height: 11720px; */
+  }
+
+  .thank-you-container22 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: "Arial", sans-serif;
+    background-color: #f8f8f8;
+    padding: 20px;
+    background-color: #9b94d1;
+    background-image: url(https://cdn.wallpapersafari.com/78/14/dFQR2j.jpg);
+    background-position: center;
+    background-size: cover;
+  }
+
+.home-link22{
+  position: relative;
+  right:3px;
+}
+
+}
+@media (min-width:425px) and (max-width:767px){
+  .car-details22 {
+    display: flex;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 30px;
+    width: 250px;
+    height: 350px;
+    background: linear-gradient(to right, #29323c, #485563);
+    flex-direction: column;
+  }
+
+  .car-image22 {
+    width: 200px;
+    height: 150px;
+    object-fit: contain;
+    margin-left: 20px;
+  }
+
+  .details22 {
+    padding: 20px;
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(182, 191, 194);
+    /* gap: 10px; */
+    /* height: 11720px; */
+  }
+
+  .thank-you-container22 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: "Arial", sans-serif;
+    background-color: #f8f8f8;
+    padding: 20px;
+    background-color: #9b94d1;
+    background-image: url(https://cdn.wallpapersafari.com/78/14/dFQR2j.jpg);
+    background-position: center;
+    background-size: cover;
+  }
+
+.home-link22{
+  position: relative;
+  right:3px;
+}
+
+}
+
+
+
