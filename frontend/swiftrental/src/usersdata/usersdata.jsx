@@ -14,7 +14,7 @@ const UsersDataComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response7 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/userdata`);
+        const response7 = await fetch(`https://swiftdrive.onrender.com/userdata`);
         if (!response7.ok) {
           throw new Error("Failed to fetch data");
         }
