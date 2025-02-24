@@ -26,7 +26,7 @@ const SignUp = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/signup`, {
+    const response = await fetch(`https://swiftdrive.onrender.com/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
