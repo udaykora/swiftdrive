@@ -30,7 +30,7 @@ const UsersDataComponent = () => {
 
   const removeuser = (user) => {
     const deletedata = async () => {
-      let response2 = await fetch("http://localhost:8085/updateuserstatus", {
+      let response2 = await fetch("https://swiftdrive.onrender.com/updateuserstatus", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
