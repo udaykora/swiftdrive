@@ -51,7 +51,7 @@ const Userbooking = () => {
       const userid = parseddata.id;
       console.log(userid);
 
-      let response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/usersbookedcars`, {
+      let response2 = await fetch(`https://swiftdrive.onrender.com/usersbookedcars`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
