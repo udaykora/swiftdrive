@@ -14,7 +14,7 @@ const UsersDataComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response7 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/userdata`);
+        const response7 = await fetch(`https://swiftdrive.onrender.com/userdata`);
         if (!response7.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -30,7 +30,7 @@ const UsersDataComponent = () => {
 
   const removeuser = (user) => {
     const deletedata = async () => {
-      let response2 = await fetch("http://localhost:8085/updateuserstatus", {
+      let response2 = await fetch("https://swiftdrive.onrender.com/updateuserstatus", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

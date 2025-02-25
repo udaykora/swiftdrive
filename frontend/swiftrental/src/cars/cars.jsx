@@ -26,7 +26,7 @@ const CarListComponent = () => {
 
   useEffect(() => {
     const handleSubmit = async (e) => {
-      let response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/cars`, {
+      let response2 = await fetch(`https://swiftdrive.onrender.com/cars`, {
         method: "GET",
       });
 

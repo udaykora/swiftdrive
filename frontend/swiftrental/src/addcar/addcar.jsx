@@ -53,7 +53,7 @@ const CarInfoForm = () => {
     }
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/carupload`, {
+      const response = await fetch(`https://swiftdrive.onrender.com/carupload`, {
         method: "POST",
         body: formData,
       });

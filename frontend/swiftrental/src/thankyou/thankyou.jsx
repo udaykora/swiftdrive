@@ -32,7 +32,7 @@ const ThankYou = () => {
       const bookingprice = location.state.carprice;
 
       const submit = async () => { 
-        let response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/bookedcars`, { 
+        let response2 = await fetch(`https://swiftdrive.onrender.com/bookedcars`, { 
           method: "POST", 
           headers: { 
             "Content-Type": "application/json", 

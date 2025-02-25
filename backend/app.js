@@ -1,5 +1,5 @@
 const express = require("express");
-const mysql = require("mysql2");
+const mysql = require("mysql");
 const cors = require("cors");
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
@@ -39,9 +39,7 @@ db.getConnection((err) => {
   }
 });
 
-app.get("/", (req, res) => {
-  return res.json("from backend side");
-});
+
 
 app.get("/users", (req, res) => {
   const sql = "select * from bankistregister";

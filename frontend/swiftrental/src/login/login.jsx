@@ -12,7 +12,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
+    let response = await fetch(`https://swiftdrive.onrender.com/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,6 +52,7 @@ const Login = () => {
     }
 
     if (data.status === "success") {
+      console.log("hiii")
       localStorage.setItem('userdatas', JSON.stringify(data.message));
       navigate("/usercars")
     }
