@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './login.css';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./login.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [userMessage, setUserMessage] = useState("");
   const [assign, setAssign] = useState(false);
 
@@ -19,18 +19,19 @@ const Login = () => {
       },
       body: JSON.stringify({
         email,
-        password
+        password,
       }),
     });
 
     const data = await response.json();
     console.log(data);
     if (data.status === "adminsuccess") {
-      localStorage.setItem('userdatas', JSON.stringify(data.message));
+      localStorage.setItem("admindata", JSON.stringify({ email, password }));
+
       navigate("/cars", {
         state: {
           userdatas: data.message,
-        }
+        },
       });
     }
 
@@ -48,13 +49,13 @@ const Login = () => {
       setTimeout(() => {
         setAssign(false);
       }, 3000);
-      return
+      return;
     }
 
     if (data.status === "success") {
-      console.log("hiii")
-      localStorage.setItem('userdatas', JSON.stringify(data.message));
-      navigate("/usercars")
+      console.log("hiii");
+      localStorage.setItem("userdatas", JSON.stringify(data.message));
+      navigate("/usercars");
     }
   };
 
@@ -94,7 +95,7 @@ const Login = () => {
         </form>
         <div className="new-to-account">
           <p>
-            New to account?{' '}
+            New to account?{" "}
             <Link to="/signup" className="signup-link">
               Sign Up
             </Link>
@@ -105,8 +106,12 @@ const Login = () => {
         {/* Admin credentials section */}
         <div className="admin-credentials">
           <h3 className="editing"> Admin Login Credentials </h3>
-          <p><strong>Email:</strong> udaykora777@gmail.com</p>
-          <p><strong>Password:</strong> Udaykora@2002</p>
+          <p>
+            <strong>Email:</strong> udaykora777@gmail.com
+          </p>
+          <p>
+            <strong>Password:</strong> Udaykora@2002
+          </p>
         </div>
       </div>
     </div>

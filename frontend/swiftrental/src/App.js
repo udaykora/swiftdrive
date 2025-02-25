@@ -11,6 +11,7 @@ import ThankYou from "./thankyou/thankyou";
 import Userbooking from "./userbookings/userbookings";
 import Adminbooking from "./adminbookings/adminbookings";
 import ProtectedRoute from "./protectedroute";
+import ProtectedRouteAdmin from "./protectedadmin";
 // import UserDataTable from "./usersdata/usersdata";
 
 import {
@@ -40,26 +41,26 @@ function App() {
           {/* <Route path="/adminbookings" element={<Adminbooking/>}/> */}
 
 
-          <Route element={<ProtectedRoute />}>
+          <Route element={<ProtectedRouteAdmin />}>
           <Route path="/adminbookings" element={<Adminbooking/>}>
           </Route>
         </Route>
 
 
 
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRouteAdmin />}>
           <Route path="/addcar" element={<CarInfoForm/>}>
           </Route>
         </Route>
 
 
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRouteAdmin />}>
           <Route path="/cars" element={<CarListComponent/>}>
           </Route>
         </Route>
 
 
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRouteAdmin />}>
           <Route path="/usersdata" element={<UserDataTable/>}>
           </Route>
         </Route>
