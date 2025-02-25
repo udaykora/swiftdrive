@@ -10,6 +10,7 @@ import CarCard from "./carbooking/carbooking";
 import ThankYou from "./thankyou/thankyou";
 import Userbooking from "./userbookings/userbookings";
 import Adminbooking from "./adminbookings/adminbookings";
+import ProtectedRoute from "./protectedroute";
 // import UserDataTable from "./usersdata/usersdata";
 
 import {
@@ -18,6 +19,7 @@ import {
   Routes,
   Link,
   Switch,
+  Outlet
 } from "react-router-dom";
 
 function App() {
@@ -27,14 +29,70 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/cars" element={<CarListComponent />} />
-          <Route path="/usersdata" element={<UserDataTable />} />
-          <Route path="/addcar" element={<CarInfoForm />} />
-          <Route path="/usercars" element={<CarList />} />
-          <Route path="/userbookings" element={<CarCard />} />
-          <Route path="/userbooked" element={<ThankYou />} />
-          <Route path="/bookings" element={<Userbooking />} />
-          <Route path="/adminbookings" element={<Adminbooking/>}/>
+          {/* <Route path="/cars" element={<CarListComponent />} /> */}
+          {/* <Route path="/usersdata" element={<UserDataTable />} /> */}
+          {/* <Route path="/addcar" element={<CarInfoForm />} /> */}
+
+          {/* <Route path="/usercars" element={<CarList />} /> */}
+          {/* <Route path="/userbookings" element={<CarCard />} /> */}
+          {/* <Route path="/userbooked" element={<ThankYou />} /> */}
+          {/* <Route path="/bookings" element={<Userbooking />} /> */}
+          {/* <Route path="/adminbookings" element={<Adminbooking/>}/> */}
+
+
+          <Route element={<ProtectedRoute />}>
+          <Route path="/adminbookings" element={<Adminbooking/>}>
+          </Route>
+        </Route>
+
+
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/addcar" element={<CarInfoForm/>}>
+          </Route>
+        </Route>
+
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/cars" element={<CarListComponent/>}>
+          </Route>
+        </Route>
+
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/usersdata" element={<UserDataTable/>}>
+          </Route>
+        </Route>
+
+
+
+
+          <Route element={<ProtectedRoute />}>
+          <Route path="/usercars" element={<CarList/>}>
+          </Route>
+        </Route>
+
+
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/bookings" element={<Userbooking/>}>
+          </Route>
+        </Route>
+
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/userbookings" element={<CarCard/>}>
+          </Route>
+        </Route>
+
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/userbooked" element={<ThankYou/>}>
+          </Route>
+        </Route>
+
+
+
           
         </Routes>
       </Router>

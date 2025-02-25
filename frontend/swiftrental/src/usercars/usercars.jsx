@@ -104,6 +104,7 @@ const CarList = () => {
   }
 
   const logout = ()=>{
+    localStorage.clear();
     navigate("/")
   }
 

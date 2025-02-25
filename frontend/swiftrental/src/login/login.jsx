@@ -26,6 +26,7 @@ const Login = () => {
     const data = await response.json();
     console.log(data);
     if (data.status === "adminsuccess") {
+      localStorage.setItem('userdatas', JSON.stringify(data.message));
       navigate("/cars", {
         state: {
           userdatas: data.message,
