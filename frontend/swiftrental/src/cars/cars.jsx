@@ -17,6 +17,7 @@ const CarListComponent = () => {
   };
 
   let logout = () => {
+    localStorage.clear();
     navigate("/");
   };
 
