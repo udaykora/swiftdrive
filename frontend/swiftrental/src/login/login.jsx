@@ -8,9 +8,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [userMessage, setUserMessage] = useState("");
   const [assign, setAssign] = useState(false);
+  const [temp , settemp]=useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    settemp(true)
 
     let response = await fetch(`https://swiftdrive.onrender.com/login`, {
       method: "POST",
@@ -60,7 +62,8 @@ const Login = () => {
   };
 
   return (
-    <div className="login-body">
+    <>
+      <div className={`login-body ${temp ? 'login-body1' : ''}`}>
       <div className="container">
         <div className="app-name">SwiftDrive</div>
         <div className="quote">Accelerate your journey, drive the future.</div>
@@ -89,10 +92,11 @@ const Login = () => {
               className="input-field"
             />
           </div>
-          <button type="submit" className="submit-btn">
+          <button type="submit" className="submit-btn" >
             Log In
           </button>
         </form>
+        
         <div className="new-to-account">
           <p>
             New to account?{" "}
@@ -115,6 +119,8 @@ const Login = () => {
         </div>
       </div>
     </div>
+    {temp && (<div className="loader"></div>)}
+    </>
   );
 };
 

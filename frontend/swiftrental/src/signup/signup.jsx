@@ -2,6 +2,8 @@ import React, { useState , useEffect } from 'react';
 import { Link ,useNavigate} from 'react-router-dom';
 import './signup.css';
 
+
+
 const SignUp = () => {
     const navigate = useNavigate()
   const [userDetails, setUserDetails] = useState({
@@ -12,6 +14,7 @@ const SignUp = () => {
     address: '',
     password: ''
   });
+  const [temp , settemp]=useState(false)
 
   const [isRegistered, setit] = useState(false);
   const [isRegistered1, setit1] = useState(false);
@@ -26,6 +29,7 @@ const SignUp = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    settemp(true)
     const response = await fetch(`https://swiftdrive.onrender.com/signup`, {
         method: "POST",
         headers: {
@@ -36,7 +40,9 @@ const SignUp = () => {
 
       const data1 = await response.json();
       if (data1.status === "success") {
+        settemp(false)
         setit(true);
+        
         setTimeout(() => {
           navigate("/");
         }, 3000);
@@ -44,6 +50,7 @@ const SignUp = () => {
   
       if (data1.status === "failed") {
           setit1(true);
+          settemp(false)
           setTimeout(() => {
               setit1(false);
           }, 3000);
@@ -62,7 +69,9 @@ const SignUp = () => {
   
 
   return (
-    <div className="signup-body">
+    <>
+    <div className={`signup-body ${temp ? 'signup-body1' : ''}`}>
+    
       <div className="signup-form-container">
         <h2 className='create'>Create an Account</h2>
         <form onSubmit={handleSubmit}>
@@ -146,6 +155,10 @@ const SignUp = () => {
         )}
       </div>
     </div>
+        {temp && (<div className="loader-sign"></div>)}
+        </>
+    
+     
   );
 };
 

@@ -17,7 +17,11 @@
     background-position: center;
     color: white;
     overflow: hidden;
-    
+   
+  }
+  .login-body1{
+    filter: blur(8px);
+
   }
 
   .admin-credentials {
@@ -56,7 +60,7 @@
     text-align: center;
     opacity: 0.95;
     transition: opacity 0.3s ease-in-out;
-    margin-left: -415px;
+    margin-left: -405px;
   }
   
   .login-form-container h2 {
@@ -152,6 +156,24 @@
   width: 80%;
   right: 650px;
 }
+/* Center the loader within the parent container */
+.loader {
+  border: 8px solid #f3f3f3;  /* Light gray background */
+  border-top: 8px solid #3498db;  /* Blue color for the spinner */
+  border-radius: 50%;  /* Make it round */
+  width: 50px;  /* Size of the spinner */
+  height: 50px;
+  animation: spin 1s linear infinite;
+  position: relative;
+  bottom: 420px;
+  left: 670px;
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
 
 
@@ -184,6 +206,20 @@
     right: inherit;
   } 
 
+  .loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1slinear infinite;
+    position: relative;
+    bottom: 340px;
+    left: 120px;
+}
+
+
+
   .quote {
     position: relative;
     font-size: 18px;
@@ -211,6 +247,18 @@
     margin-left: -315px;
     margin-top: 93px;
     }
+
+  .loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1slinear infinite;
+    position: relative;
+    bottom: 351px;
+    left: 146px;
+}
 
 
   
@@ -253,6 +301,20 @@
     transition: opacity 0.3s ease-in-out;
     margin-left: -315px;
     margin-top: 93px;
+  }
+
+  .loader{
+   
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1slinear infinite;
+      position: relative;
+      bottom: 368px;
+      left: 171px;
+  
   }
   .app-name{
 
@@ -313,6 +375,20 @@
 
   } 
 
+  
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1slinear infinite;
+      position: relative;
+      bottom: 376px;
+      left: 357px;
+  }
+  
+
   .quote {
     position: relative;
     font-size: 18px;
@@ -340,7 +416,20 @@
       color: white;
       overflow: hidden;
       
+      
     }
+
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1slinear infinite;
+      position: relative;
+      bottom: 476px;
+      left: 458px;
+  }
     
     /* Login Form Container */
     .login-form-container {

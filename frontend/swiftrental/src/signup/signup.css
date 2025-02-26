@@ -4,7 +4,28 @@
     padding: 0;
     box-sizing: border-box;
   }
+  .signup-body1{
+    filter: blur(8px);
+
+  }
+
+  .loader-sign {
+    border: 8px solid #f3f3f3;  /* Light gray background */
+    border-top: 8px solid #3498db;  /* Blue color for the spinner */
+    border-radius: 50%;  /* Make it round */
+    width: 50px;  /* Size of the spinner */
+    height: 50px;
+    animation: spin 1s linear infinite;
+    position: relative;
+    bottom: 420px;
+    left: 742px;
+  }
   
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
  
   
   .signup-body {
@@ -121,6 +142,19 @@
 
     }
 
+
+    .loader-sign {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1slinear infinite;
+      position: relative;
+      bottom: 454px;
+      left: 41%;
+  }
+
     .car-list12 {
       display: flex
   ;
@@ -152,5 +186,72 @@
   position: relative;
   top: 100px;
 }
+
+  }
+
+
+  @media (min-width:375px) and (max-width:424px){
+    .loader-sign {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1slinear infinite;
+      position: relative;
+      bottom: 454px;
+      left: 41%;
+  }
+
+
+
+  }
+
+
+  @media (min-width:425px) and (max-width:767px){
+
+    .loader-sign {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1slinear infinite;
+      position: relative;
+      bottom: 454px;
+      left: 43%;
+  }
+
+
+  }
+
+
+  @media (min-width:768px) and (max-width:1023px){
+
+    .loader-sign {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1slinear infinite;
+      position: relative;
+      bottom: 454px;
+      left: 47%;
+  }
+  }
+  @media (min-width:1024px) and (max-width:1439px){
+    .loader-sign {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1slinear infinite;
+      position: relative;
+      bottom: 454px;
+      left: 47%;
+  }
+
 
   }
