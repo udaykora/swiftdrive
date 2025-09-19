@@ -97,7 +97,7 @@ app.post("/signup", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  const { email, password } = req.body;
+  const { email, passwrd } = req.body;
   console.log(email);
   console.log(password);
   const querylogin = "SELECT * FROM swiftrental WHERE email= ?";
