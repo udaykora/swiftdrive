@@ -5,20 +5,29 @@ const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const bodyParser = require("body-parser");
 const streamifier = require("streamifier");
-const util = require("util");
+const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 const app = express();
 app.use(cors());
-
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 cloudinary.config({
   cloud_name: "ds1ysygvb",
   api_key: "385643874825617",
   api_secret: "FTZNWNQRccQIbY7uh9qo3DguVig",
+});
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "udaykora777@gmail.com",
+    pass: "qzgy papu qmbe funk",
+  },
 });
 
 const db = mysql.createPool({
@@ -32,64 +41,31 @@ const db = mysql.createPool({
 });
 
 db.getConnection((err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("mysql database connected.......");
-  }
+  if (err) console.log(err);
+  else console.log("mysql database connected");
 });
-
-
 
 app.get("/users", (req, res) => {
   const sql = "select * from bankistregister";
-
   db.query(sql, (err, data) => {
-    if (err) {
-      console.log("error connecting in database");
-    } else {
-      console.log("hii");
-    }
+    if (err) return res.status(500).json({ status: "failed" });
+    return res.json({ status: "success", data });
   });
 });
 
 app.post("/signup", (req, res) => {
   const { fullname, email, phonenumber, address, password } = req.body;
-
   let query2 = "select * from swiftrental where email = ?";
-
   db.query(query2, [email], (err, results) => {
-    console.log(results);
-
     if (results.length > 0) {
       return res.json({ status: "failed", message: "Email id Already Exists" });
     } else {
       db.query(
         "INSERT INTO swiftrental SET ?",
-        {
-          
-          email: email,
-          fullname: fullname,
-
-          phonenumber: phonenumber,
-          address: address,
-          password: password,
-          
-        },
+        { email, fullname, phonenumber, address, password },
         (err) => {
-          if (err) {
-            console.log("Error connecting to database");
-            return res.status(500).json({
-              status: "failed",
-              message: "Error connecting to database",
-            });
-          } else {
-            console.log("Data sent securely...");
-            return res.status(200).json({
-              status: "success",
-              message: "User registered successfully!",
-            });
-          }
+          if (err) return res.status(500).json({ status: "failed" });
+          return res.json({ status: "success", message: "User registered" });
         }
       );
     }
@@ -98,45 +74,22 @@ app.post("/signup", (req, res) => {
 
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
-  console.log(email);
-  console.log(password);
   const querylogin = "SELECT * FROM swiftrental WHERE email= ?";
   const adminlogin = "SELECT * FROM admin WHERE email = ?";
   db.query(adminlogin, [email], (err, results5) => {
-    if (err) {
-      return res.status(500).json({
-        status: "failed to load",
-        message: "error connecting to the database",
-      });
-    }
+    if (err) return res.status(500).json({ status: "failed" });
     if (results5.length > 0 && results5[0].password == password) {
-      return res
-        .status(200)
-        .json({ status: "adminsuccess", message: "admin login" });
+      return res.json({ status: "adminsuccess", message: "admin login" });
     } else {
       db.query(querylogin, [email], (err, results) => {
-        if (err) {
-          return res.status(500).json({
-            status: "failed to load",
-            message: "error connecting to the database",
-          });
-        }
-
+        if (err) return res.status(500).json({ status: "failed" });
         if (results.length > 0) {
           if (results[0].password === password) {
-            console.log("fff");
-            return res
-              .status(200)
-              .json({ status: "success", message: results[0] });
+            return res.json({ status: "success", message: results[0] });
           } else {
-            console.log("fff");
-            return res.json({
-              status: "failed",
-              message: "invalid credentials",
-            });
+            return res.json({ status: "failed", message: "invalid credentials" });
           }
         } else {
-          console.log("fff");
           return res.json({ status: "failed", message: "No account found" });
         }
       });
@@ -145,74 +98,33 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/carupload", upload.single("carImage"), async (req, res) => {
-  const {
-    carName,
-    carModel,
-    fuelCapacity,
-    capacity,
-    transmission,
-    fuelType,
-    carPrice,
-  } = req.body;
-
-  console.log(carName);
-
+  const { carName, carModel, fuelCapacity, capacity, transmission, fuelType, carPrice } = req.body;
   const carImage = req.file;
   const timestamp = new Date().getTime();
-
   try {
-    if (!carImage || !carImage.buffer) {
-      throw new Error("File buffer is not available.");
-    }
-
+    if (!carImage || !carImage.buffer) throw new Error("File buffer missing");
     const imageBuffer = carImage.buffer;
-    console.log("Image Buffer:", imageBuffer);
-
     const result = await new Promise((resolve, reject) => {
       const upload_stream = cloudinary.uploader.upload_stream(
-        {
-          resource_type: "auto",
-          public_id: timestamp,
-        },
+        { resource_type: "auto", public_id: timestamp },
         (error, result) => {
-          if (error) {
-            console.error("Cloudinary Upload Stream Error:", error);
-            reject(error);
-          } else {
-            console.log("Cloudinary Upload Result:", result);
-            resolve(result);
-          }
+          if (error) reject(error);
+          else resolve(result);
         }
       );
       streamifier.createReadStream(imageBuffer).pipe(upload_stream);
     });
-
     const path = result.secure_url;
-    console.log("Cloudinary Image Path:", path);
-
     const query = `INSERT INTO cars SET ?`;
     db.query(
       query,
-      {
-        carName,
-        carModel,
-        fuelCapacity,
-        capacity,
-        transmission,
-        fuelType,
-        carPrice,
-        path,
-      },
-      (err, result) => {
-        if (err) {
-          console.error("Database Insertion Error:", err);
-          return res.status(500).json({ error: "Error inserting data" });
-        }
-        res.status(200).json({ message: "Car data uploaded successfully" });
+      { carName, carModel, fuelCapacity, capacity, transmission, fuelType, carPrice, path },
+      (err) => {
+        if (err) return res.status(500).json({ error: "Error inserting data" });
+        res.json({ message: "Car data uploaded successfully" });
       }
     );
   } catch (error) {
-    console.error("Cloudinary Upload or Database Error:", error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -220,121 +132,132 @@ app.post("/carupload", upload.single("carImage"), async (req, res) => {
 app.get("/userdata", (req, res) => {
   query3 = "select * from swiftrental";
   db.query(query3, (err, results6) => {
-    if (err) {
-      return res
-        .status(500)
-        .json({ status: "failed", message: "error connecting database" });
+    if (err) return res.status(500).json({ status: "failed" });
+    return res.json({ status: "success", message: results6 });
+  });
+});
+
+app.post("/tokenverify",(req,res)=>{
+
+  const {token}=req.body
+
+  console.log(token)
+
+  try {
+  const decoded = jwt.verify(token,  "superkey");
+  console.log("✅ Token is valid:", decoded);
+  return res.json({status:true})
+} catch (err) {
+  console.log(" Invalid or expired token:", err.message);
+}
+})
+
+app.post("/forgotpassword", (req, res) => {
+  let { email, password } = req.body;
+  let query = "UPDATE swiftrental SET password = ? where email = ?";
+  db.query(query, [password, email], (err) => {
+    if (err) return res.json({ status: false });
+    return res.json({ status: true });
+  });
+});
+
+app.post("/passwordverifylink", (req, res) => {
+  let { email } = req.body;
+  let query2 = "select * from swiftrental where email = ?";
+  db.query(query2, [email], async (err, results) => {
+    if (err) return res.status(500).json({ status: false });
+    if (results.length > 0) {
+      console.log(email)
+      const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
+      const resetLink = `http://localhost:3000/forgotpasswordui?token=${token}&email=${encodeURIComponent(email)}`;
+      try {
+        await transporter.sendMail({
+          to: email,
+          subject: "Password Reset",
+          html: `<a href="${resetLink}">Reset Password</a>`,
+        });
+        return res.json({ status: true, message: "Verification sent" });
+      } catch (mailError) {
+        return res.status(500).json({ status: false, message: "Mail failed" });
+      }
     } else {
-      console.log(results6);
-      return res.status(200).json({ status: "success", message: results6 });
+      return res.json({ status: false, message: "Email not found" });
     }
   });
 });
 
 app.get("/cars", (req, res) => {
   let query3 = "select * from cars ";
-  console.log("hii");
   db.query(query3, (err, results7) => {
-    if (err) {
-      return res
-        .status(500)
-        .json({ status: "failed", message: "error connecting database" });
-    } else {
-      console.log(results7);
-      return res.status(200).json({ status: "success", message: results7 });
-    }
+    if (err) return res.status(500).json({ status: "failed" });
+    return res.json({ status: "success", message: results7 });
   });
 });
 
 app.post("/bookedcars", (req, res) => {
-  const {
-    carid,
-    carname,
-    carmodel,
-    bookedbyname,
-    bookedbyid,
-    pickupdate,
-    dropdate,
-    carimagepath,
-    bookingprice,
-  } = req.body;
-
-  console.log(carid);
-  console.log(carname);
-  console.log(bookedbyname);
-  console.log(bookedbyid);
-  console.log(pickupdate);
-  console.log(dropdate);
-  console.log(carimagepath);
-  console.log(bookingprice);
-
+  const { carid, carname, carmodel, bookedbyname, bookedbyid, pickupdate, dropdate, carimagepath, bookingprice } = req.body;
   let query4 = "insert into bookedcars SET ?";
   db.query(
     query4,
-    {
-      carid,
-      carname,
-      carmodel,
-      bookedbyname,
-      bookedbyid,
-      pickupdate,
-      dropdate,
-      carimagepath,
-      bookingprice,
-    },
+    { carid, carname, carmodel, bookedbyname, bookedbyid, pickupdate, dropdate, carimagepath, bookingprice },
     (err) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("data stored successfully");
-      }
+      if (err) return res.status(500).json({ status: "failed" });
+      return res.json({ status: "success" });
     }
   );
 });
 
+app.post("/emailverify", async (req, res) => {
+  let { email } = req.body;
+  let query2 = "select * from swiftrental where email = ?";
+  db.query(query2, [email], async (err, results) => {
+    if (err) return res.status(500).json({ status: false });
+    if (results.length > 0) {
+      return res.json({ status: false, message: "Email Already Exists" });
+    }
+    const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
+    const resetLink = `http://localhost:3000/signup?token=${token}&email=${encodeURIComponent(email)}`;
+    try {
+      await transporter.sendMail({
+        to: email,
+        subject: "Email Verification",
+        html: `<a href="${resetLink}">Verify Email</a>`,
+      });
+      return res.json({ status: true, message: "Verification sent" });
+    } catch (mailError) {
+      return res.status(500).json({ status: false, message: "Mail failed" });
+    }
+  });
+});
+
 app.post("/updateuserstatus", (req, res) => {
   let { updateuserstatus } = req.body;
-  const statusupdate =
-    updateuserstatus.status === "active" ? "deactive" : "active";
+  const statusupdate = updateuserstatus.status === "active" ? "deactive" : "active";
   let query5 = "UPDATE swiftrental SET status = ? WHERE id = ?";
-
-  db.query(query5, [statusupdate, updateuserstatus.id], (err, results) => {
-    if (err) {
-      console.log(err);
-    } else {
-      return res.json({ message: "updated" });
-    }
+  db.query(query5, [statusupdate, updateuserstatus.id], (err) => {
+    if (err) return res.status(500).json({ status: "failed" });
+    return res.json({ message: "updated" });
   });
 });
 
 app.post("/usersbookedcars", (req, res) => {
   const { userid } = req.body;
-  console.log(userid);
   let query = "select * from bookedcars where bookedbyid = ?";
-
   db.query(query, [userid], (err, results) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(results);
-      return res.json({ status: "success", data: results });
-    }
+    if (err) return res.status(500).json({ status: "failed" });
+    return res.json({ status: "success", data: results });
   });
 });
 
 app.get("/adminbookedcars", (req, res) => {
   let query = "select * from bookedcars";
-
   db.query(query, (err, results) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(results);
-      return res.json({ status: "success", data: results });
-    }
+    if (err) return res.status(500).json({ status: "failed" });
+    return res.json({ status: "success", data: results });
   });
 });
 
 app.listen(8085, () => {
   console.log("port running");
 });
+

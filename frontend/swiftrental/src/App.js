@@ -12,6 +12,11 @@ import Userbooking from "./userbookings/userbookings";
 import Adminbooking from "./adminbookings/adminbookings";
 import ProtectedRoute from "./protectedroute";
 import ProtectedRouteAdmin from "./protectedadmin";
+import EmailVerify from "./emailverify/emailverify";
+import ForgotPassword from "./forgotpassword/forgotpassword";
+import ForgotPasswordUI from "./resetpassword/resetpassword";
+import TokenRouteAdmin from "./protectedtokenroute";
+
 // import UserDataTable from "./usersdata/usersdata";
 
 import {
@@ -28,6 +33,7 @@ function App() {
     <>
       <Router>
         <Routes>
+         
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           {/* <Route path="/cars" element={<CarListComponent />} /> */}
@@ -91,6 +97,15 @@ function App() {
           <Route path="/userbooked" element={<ThankYou/>}>
           </Route>
         </Route>
+
+        
+          <Route path="/emailverify" element={<EmailVerify/>}>
+          </Route>
+       <Route path="/forgotpasslink" element={<ForgotPassword/>}></Route>
+       <Route element={<TokenRouteAdmin />}>
+
+       <Route path="/forgotpasswordui" element={<ForgotPasswordUI/>}></Route>
+       </Route>
 
 
 

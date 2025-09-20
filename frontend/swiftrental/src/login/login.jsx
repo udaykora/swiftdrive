@@ -100,8 +100,15 @@ const Login = () => {
         <div className="new-to-account">
           <p>
             New to account?{" "}
-            <Link to="/signup" className="signup-link">
+            <Link to="/emailverify" className="signup-link">
               Sign Up
+            </Link>
+          </p>
+
+           <p style={{"marginTop":"2px"}}>
+          
+            <Link to="/forgotpasslink" className="signup-link">
+              Forgot Password 
             </Link>
           </p>
           {assign && <h1 className="failed-message">{userMessage}</h1>}

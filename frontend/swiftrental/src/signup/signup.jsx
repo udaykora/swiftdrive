@@ -1,11 +1,14 @@
 import React, { useState , useEffect } from 'react';
 import { Link ,useNavigate} from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+
 import './signup.css';
 
 
 
 const SignUp = () => {
     const navigate = useNavigate()
+     const location = useLocation();
   const [userDetails, setUserDetails] = useState({
 
     fullname: '',
@@ -59,13 +62,22 @@ const SignUp = () => {
 
 
   useEffect(() => {
-    // This is the setup code when the component is mounted
+   
+  const queryParams = new URLSearchParams(location.search);
+ 
+  const token = queryParams.get("email");
+  console.log(token)
+  setUserDetails((prev) => ({
+  ...prev,        
+  email: token,   
+}));
+
   
     return () => {
-      // This is the cleanup code that runs when the component unmounts
+      
       console.log('Component unmounted');
     };
-  }, []);  // The empty dependency array ensures it runs once when mounted and unmounted
+  }, []);  
   
 
   return (
@@ -94,7 +106,7 @@ const SignUp = () => {
               value={userDetails.email}
               onChange={handleChange}
               placeholder="Email"
-              required
+              readOnly
               className="input-field"
             />
           </div>
@@ -139,14 +151,7 @@ const SignUp = () => {
             Sign Up
           </button>
         </form>
-        <div className="existing-account">
-          <p style={{color:"black"}}>
-            Already have an account?{' '}
-            <Link to="/" className="login-link">
-              Log In
-            </Link>
-          </p>
-        </div>
+        
         {isRegistered && (
           <h1 className="success-message">Registered successfully!</h1>
         )}

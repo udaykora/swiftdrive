@@ -98,7 +98,7 @@ const CarInfoForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="fuelType">Fuel Type</label> {/* Added fuelType label */}
+          <label htmlFor="fuelType">Fuel Type</label> 
           <select
             id="fuelType"
             name="fuelType"
