@@ -223,26 +223,34 @@ app.post("/bookedcars", (req, res) => {
 
 app.post("/emailverify", async (req, res) => {
   let { email } = req.body;
-  let query2 = "select * from swiftrental where email = ?";
+  let query2 = "SELECT * FROM swiftrental WHERE email = ?";
+
   db.query(query2, [email], async (err, results) => {
-    if (err) return res.status(500).json({ status: false });
+    if (err) return res.status(500).json({ status: false, message: err.message });
+
     if (results.length > 0) {
       return res.json({ status: false, message: "Email Already Exists" });
     }
+
     const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
-    const resetLink = `http://localhost:3000/signup?token=${token}&email=${encodeURIComponent(email)}`;
+    const resetLink = `https://swiftdrive.vercel.app/signup?token=${token}&email=${encodeURIComponent(email)}`;
+
+    const msg = {
+      to: email,
+      from: "udaykora777@gmail.com", 
+      subject: "Email Verification",
+      html: `<p>Click the link below to verify your email:</p><a href="${resetLink}">Verify Email</a>`,
+    };
+
     try {
-      await transporter.sendMail({
-        to: email,
-        subject: "Email Verification",
-        html: `<a href="${resetLink}">Verify Email</a>`,
-      });
+      await sgMail.send(msg);
       return res.json({ status: true, message: "Verification sent" });
-    } catch (mailError) {
-      return res.status(500).json({ status: false, message: "Mail failed" });
+    } catch (error) {
+      return res.status(500).json({ status: false, message: error.message });
     }
   });
 });
+
 
 app.post("/updateuserstatus", (req, res) => {
   let { updateuserstatus } = req.body;
