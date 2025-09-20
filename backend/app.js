@@ -177,7 +177,7 @@ app.post("/passwordverifylink", (req, res) => {
       console.log(email);
 
       const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
-      const resetLink = `https://your-frontend-domain.com/forgotpasswordui?token=${token}&email=${encodeURIComponent(email)}`;
+      const resetLink = `https://swiftdrive.vercel.app/forgotpasswordui?token=${token}&email=${encodeURIComponent(email)}`;
 
       const msg = {
         to: email,
