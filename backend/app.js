@@ -163,13 +163,15 @@ app.post("/forgotpassword", (req, res) => {
 
 app.post("/passwordverifylink", (req, res) => {
   let { email } = req.body;
-  let query2 = "select * from swiftrental where email = ?";
+  let query2 = "SELECT * FROM swiftrental WHERE email = ?";
+
   db.query(query2, [email], async (err, results) => {
-    if (err) return res.status(500).json({ status: false });
+    if (err) return res.status(500).json({ status: false, message: err.message });
+
     if (results.length > 0) {
-      console.log(email)
       const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
       const resetLink = `http://localhost:3000/forgotpasswordui?token=${token}&email=${encodeURIComponent(email)}`;
+
       try {
         await transporter.sendMail({
           to: email,
@@ -178,13 +180,15 @@ app.post("/passwordverifylink", (req, res) => {
         });
         return res.json({ status: true, message: "Verification sent" });
       } catch (mailError) {
-        return res.status(500).json({ status: false, message: "Mail failed" });
+        // Return the exact Nodemailer error to the frontend
+        return res.status(500).json({ status: false, message: mailError.message });
       }
     } else {
       return res.json({ status: false, message: "Email not found" });
     }
   });
 });
+
 
 app.get("/cars", (req, res) => {
   let query3 = "select * from cars ";
