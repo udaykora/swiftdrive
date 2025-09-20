@@ -16,6 +16,11 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const sgMail = require('@sendgrid/mail');
+
+sgMail.setApiKey("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");
+
+
 cloudinary.config({
   cloud_name: "ds1ysygvb",
   api_key: "385643874825617",
@@ -169,18 +174,23 @@ app.post("/passwordverifylink", (req, res) => {
     if (err) return res.status(500).json({ status: false, message: err.message });
 
     if (results.length > 0) {
+      console.log(email);
+
       const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
-      const resetLink = `http://localhost:3000/forgotpasswordui?token=${token}&email=${encodeURIComponent(email)}`;
+      const resetLink = `https://your-frontend-domain.com/forgotpasswordui?token=${token}&email=${encodeURIComponent(email)}`;
+
+      const msg = {
+        to: email,
+        from: "udaykora777@gmail.com", 
+        subject: "Password Reset",
+        html: `<a href="${resetLink}">Reset Password</a>`,
+      };
 
       try {
-        await transporter.sendMail({
-          to: email,
-          subject: "Password Reset",
-          html: `<a href="${resetLink}">Reset Password</a>`,
-        });
+        await sgMail.send(msg);
         return res.json({ status: true, message: "Verification sent" });
       } catch (mailError) {
-        // Return the exact Nodemailer error to the frontend
+        console.error("SendGrid Error:", mailError);
         return res.status(500).json({ status: false, message: mailError.message });
       }
     } else {
@@ -264,4 +274,3 @@ app.get("/adminbookedcars", (req, res) => {
 app.listen(8085, () => {
   console.log("port running");
 });
-
