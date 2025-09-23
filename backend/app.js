@@ -16,9 +16,8 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const key = "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"
 
-sgMail.setApiKey(key);
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 cloudinary.config({
   cloud_name: "ds1ysygvb",
@@ -174,6 +173,7 @@ app.post("/bookedcars", (req, res) => {
 
 app.post("/emailverify", async (req, res) => {
   const { email } = req.body;
+  console.log(process.env.SENDGRID_API_KEY)
   if (!email) return res.status(400).json({ status: false, message: "Email is required" });
 
   db.query("SELECT * FROM swiftrental WHERE email = ?", [email], async (err, results) => {
