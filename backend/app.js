@@ -230,51 +230,49 @@ app.post("/bookedcars", (req, res) => {
 });
 
 app.post("/emailverify", async (req, res) => {
-  try {
-    // Strip invalid Authorization header if it exists
-    if (req.headers.authorization) delete req.headers.authorization;
+  const { email } = req.body;
 
-    const { email } = req.body;
+  if (!email) {
+    return res.status(400).json({ status: false, message: "Email is required" });
+  }
 
-    if (!email) {
-      return res.status(400).json({ status: false, message: "Email is required" });
+  const query = "SELECT * FROM swiftrental WHERE email = ?";
+  db.query(query, [email], async (err, results) => {
+    if (err) return res.status(500).json({ status: false, message: err.message });
+
+    if (results.length > 0) {
+      return res.json({ status: false, message: "Email Already Exists" });
     }
 
-    // Check if email already exists
-    const query = "SELECT * FROM swiftrental WHERE email = ?";
-    db.query(query, [email], async (err, results) => {
-      if (err) return res.status(500).json({ status: false, message: err.message });
+    // Create a token
+    const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
+    const verifyLink = `https://swiftdrive.vercel.app/signup?token=${token}&email=${encodeURIComponent(email)}`;
 
-      if (results.length > 0) {
-        return res.json({ status: false, message: "Email Already Exists" });
-      }
+    // Prepare email
+    const msg = {
+      to: email,
+      from: "udaykora777@gmail.com",
+      subject: "SwiftDrive Email Verification",
+      html: `
+        <p>Hi,</p>
+        <p>Click the link below to verify your SwiftDrive account:</p>
+        <a href="${verifyLink}">Verify Email</a>
+        <p>If you did not request this, ignore this email.</p>
+      `,
+    };
 
-      // Generate token
-      const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
-      const verifyLink = `https://swiftdrive.vercel.app/signup?token=${token}&email=${encodeURIComponent(email)}`;
+    try {
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-      // Send email via SendGrid
-      const msg = {
-        to: email,
-        from: "udaykora777@gmail.com",
-        subject: "Email Verification",
-        text: `Click the link to verify your email: ${verifyLink}`,
-        html: `<p>Click the link to verify your email:</p><a href="${verifyLink}">Verify Email</a>`,
-      };
-
-      try {
-        await sgMail.send(msg);
-        return res.json({ status: true, message: "Verification sent" });
-      } catch (sendError) {
-        console.error("SendGrid Error:", sendError);
-        return res.status(500).json({ status: false, message: sendError.message });
-      }
-    });
-  } catch (error) {
-    console.error("Error in /emailverify:", error);
-    return res.status(500).json({ status: false, message: error.message });
-  }
+      await sgMail.send(msg);
+      return res.json({ status: true, message: "Verification email sent" });
+    } catch (error) {
+      console.error("SendGrid error:", error.response ? error.response.body : error);
+      return res.status(500).json({ status: false, message: "Failed to send email" });
+    }
+  });
 });
+
 
 
 app.post("/updateuserstatus", (req, res) => {
