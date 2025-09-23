@@ -136,6 +136,7 @@ app.post("/forgotpassword", (req, res) => {
 
 app.post("/passwordverifylink", (req, res) => {
   const { email } = req.body;
+
   db.query("SELECT * FROM swiftrental WHERE email = ?", [email], async (err, results) => {
     if (err) return res.status(500).json({ status: false, message: err.message });
     if (results.length === 0) return res.json({ status: false, message: "Email not found" });
@@ -145,20 +146,35 @@ app.post("/passwordverifylink", (req, res) => {
 
     const msg = {
       to: email,
-      from: "udaykora777@gmail.com",
-      replyTo: "udaykora777@gmail.com",
+      from: "SwiftDrive <udaykora777@gmail.com>", 
+      replyTo: "udaykora777@gmail.com",            
       subject: "SwiftDrive Password Reset",
-      html: `<p>Hi,</p><p>Click the link below to reset your SwiftDrive password:</p><a href="${resetLink}">Reset Password</a><p>If you did not request this, ignore this email.</p>`
+      html: `
+        <p>Hi,</p>
+        <p>Click the button below to reset your SwiftDrive password:</p>
+        <a href="${resetLink}" style="
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+        ">Reset Password</a>
+        <p>If you did not request this, ignore this email.</p>
+      `
     };
 
     try {
       await sgMail.send(msg);
-      return res.json({ status: true, message: "Verification sent" });
+      return res.json({ status: true, message: "Verification email sent" });
     } catch (error) {
-      return res.status(500).json({ status: false, message: error.message });
+      console.error("SendGrid Error:", error.response ? error.response.body : error);
+      return res.status(500).json({ status: false, message: "Failed to send email" });
     }
   });
 });
+
 
 app.get("/cars", (req, res) => {
   db.query("SELECT * FROM cars", (err, results) => {
