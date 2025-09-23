@@ -182,20 +182,20 @@ app.post("/emailverify", async (req, res) => {
     const verifyLink = `https://swiftdrive.vercel.app/signup?token=${token}&email=${encodeURIComponent(email)}`;
 
     const msg = {
-      to: email,
-      from: "udaykora777@gmail.com",
-      subject: "SwiftDrive Email Verification",
-      html: `<p>Hi,</p><p>Click the link below to verify your SwiftDrive account:</p><a href="${verifyLink}">Verify Email</a><p>If you did not request this, ignore this email.</p>`
-    };
-
-    try {
-      console.log("ha worked")
-      await sgMail.send(msg);
-      return res.json({ status: true, message: "Verification email sent" });
-    } catch (error) {
-      console.log("ha not worked",error.message)
-      return res.status(500).json({ status: false, message: error.message });
-    }
+  to: email, // Change to your recipient
+  from: "udaykora777@gmail.com", // Change to your verified sender
+  subject: 'Sending with SendGrid is Fun',
+  text: 'and easy to do anywhere, even with Node.js',
+  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+}
+sgMail
+  .send(msg)
+  .then(() => {
+    console.log('Email sent')
+  })
+  .catch((error) => {
+    console.error(error)
+  })
   });
 });
 
