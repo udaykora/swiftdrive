@@ -16,6 +16,9 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const sendGridApiKey = process.env.SENDGRID_API_KEY;
+
+
 
 sgMail.setApiKey(sendGridApiKey.trim());
 
