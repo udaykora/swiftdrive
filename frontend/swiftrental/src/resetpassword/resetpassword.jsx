@@ -41,7 +41,7 @@ const ForgotPasswordUI = () => {
   }
   if (password.length <8){
     setpasswordlength(true)
-     setpasswordlength(false)
+    setisloading(false)
     return
 }
 
