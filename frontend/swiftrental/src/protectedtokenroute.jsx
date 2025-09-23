@@ -3,8 +3,7 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 const TokenRouteAdmin = () => {
   const location = useLocation();
-  const [isValid, setIsValid] = useState(null); // null = loading, true = valid, false = invalid
-
+  const [isValid, setIsValid] = useState(null);
   useEffect(() => {
     const verifyToken = async () => {
       try {
