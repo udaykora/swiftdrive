@@ -176,7 +176,6 @@ app.post("/bookedcars", (req, res) => {
 
 app.post("/emailverify", async (req, res) => {
   const { email } = req.body;
-  console.log(process.env.SENDGRID_API_KEY)
   if (!email) return res.status(400).json({ status: false, message: "Email is required" });
 
   db.query("SELECT * FROM swiftrental WHERE email = ?", [email], async (err, results) => {
@@ -187,22 +186,22 @@ app.post("/emailverify", async (req, res) => {
     const verifyLink = `https://swiftdrive.vercel.app/signup?token=${token}&email=${encodeURIComponent(email)}`;
 
     const msg = {
-  to: email, // Change to your recipient
-  from: "udaykora777@gmail.com", // Change to your verified sender
-  subject: 'Sending with SendGrid is Fun',
-  text: 'and easy to do anywhere, even with Node.js',
-  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-}
-sgMail
-  .send(msg)
-  .then(() => {
-    console.log('Email sent')
-  })
-  .catch((error) => {
-    console.error(error)
-  })
+      to: email,
+      from: "udaykora777@gmail.com",
+      subject: "SwiftDrive Email Verification",
+      html: `<p>Hi,</p><p>Click the link below to verify your SwiftDrive account:</p><a href="${verifyLink}">Verify Email</a><p>If you did not request this, ignore this email.</p>`
+    };
+
+    try {
+      await sgMail.send(msg);
+      return res.json({ status: true, message: "Verification email sent" });
+    } catch (error) {
+      return res.status(500).json({ status: false, message: error.message });
+    }
   });
 });
+
+
 
 app.post("/updateuserstatus", (req, res) => {
   const { updateuserstatus } = req.body;
