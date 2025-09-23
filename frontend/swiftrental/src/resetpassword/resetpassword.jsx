@@ -114,7 +114,7 @@ const ForgotPasswordUI = () => {
         {isloading && <p className="loading">Loading...</p>}
         {passwordmatch && <p className="failed-message">Both Passwords Should Match</p>}
         {passwordset && <p className="success-message" >Password Set Successfully</p>}
-        {passwordlength && <p className="success-message" >Password should Contain 6 Characters</p>}
+        {passwordlength && <p className="failed-message" >Password should Contain More than 8 Characters</p>}
          <div className="existing-account">
           <p style={{color:"black"}}>
            
