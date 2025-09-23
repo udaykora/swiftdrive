@@ -9,12 +9,12 @@ const ThankYou = () => {
   const [userdata, setuserdata] = useState(null);
 
   useEffect(() => { 
-    const storedData = localStorage.getItem('userdatas');  // Directly access from localStorage
+    const storedData = localStorage.getItem('userdatas'); 
     console.log(storedData); 
     if (storedData) {
-      setuserdata(JSON.parse(storedData)); // Parse the stored JSON data
+      setuserdata(JSON.parse(storedData)); 
     }
-  }, []); // Empty dependency array ensures it runs once
+  }, []);
 
   useEffect(() => { 
     if (userdata) {  
@@ -52,7 +52,7 @@ const ThankYou = () => {
       }
       submit();
     }
-  }, [userdata, state]);  // Ensure this effect runs when userdata and state change
+  }, [userdata, state]);  
 
   return ( 
     <div className="thank-you-container22"> 

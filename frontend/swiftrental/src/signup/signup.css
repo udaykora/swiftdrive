@@ -1,77 +1,63 @@
-/* General Body Style */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  .signup-body1{
+}
+.signup-body1{
     filter: blur(8px);
-
-  }
-
-  .loader-sign {
-    border: 8px solid #f3f3f3;  /* Light gray background */
-    border-top: 8px solid #3498db;  /* Blue color for the spinner */
-    border-radius: 50%;  /* Make it round */
-    width: 50px;  /* Size of the spinner */
+}
+.loader-sign {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
     height: 50px;
     animation: spin 1s linear infinite;
     position: relative;
     bottom: 420px;
     left: 742px;
-  }
-  
-  
-  @keyframes spin {
+}
+@keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-  }
- 
-  
-  .signup-body {
+}
+.signup-body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-image: url("./—Pngtree—car\ rental\ broker\ or\ car_15188056.png");
-    
     background-size: cover;
     background-position: center;
     color: white;
-  }
-  
-  .signup-form-container {
-    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+}
+.signup-form-container {
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     padding: 40px;
     width: 90%;
     max-width: 400px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
     opacity: 0.95;
     transition: opacity 0.3s ease-in-out;
-  }
-  
-  .signup-form-container:hover {
-    opacity: 1; /* Hover effect to increase opacity */
-  }
-  
-  .signup-form-container h2 {
+}
+.signup-form-container:hover {
+    opacity: 1;
+}
+.signup-form-container h2 {
     font-size: 32px;
     margin-bottom: 20px;
     font-weight: 600;
     text-transform: uppercase;
-  }
-  
-  .input-group {
+}
+.input-group {
     margin-bottom: 20px;
-  }
-
-  .create{
+}
+.create{
     color: #3ecb79;
-  }
-  
-  .input-field {
+}
+.input-field {
     width: 100%;
     padding: 15px;
     font-size: 16px;
@@ -80,14 +66,12 @@
     outline: none;
     background-color: #f5f5f5;
     transition: border-color 0.3s ease;
-  }
-  
-  .input-field:focus {
-    border-color: #6a11cb; /* Focus border color */
+}
+.input-field:focus {
+    border-color: #6a11cb;
     background-color: #ffffff;
-  }
-  
-  .submit-btn {
+}
+.submit-btn {
     width: 100%;
     padding: 15px;
     background-color: #2575fc;
@@ -98,160 +82,127 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .submit-btn:hover {
+}
+.submit-btn:hover {
     background-color: #6a11cb;
-  }
-  
-  .existing-account {
+}
+.existing-account {
     margin-top: 20px;
     font-size: 14px;
-  }
-  
-  .existing-account .login-link {
+}
+.existing-account .login-link {
     color: #2575fc;
     font-weight: 600;
     text-decoration: none;
-  }
-  
-  .existing-account .login-link:hover {
+}
+.existing-account .login-link:hover {
     text-decoration: underline;
-  }
-
-
-  .success-message {
+}
+.success-message {
     color: #4caf50;
     font-size: 20px;
     font-weight: bold;
     margin-top: 15px;
-  }
-  
-  @media (max-width:374px) {
+}
+@media (max-width:374px) {
     .signup-form-container{
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    padding: 40px;
-    width: 95%;
-    max-width: 400px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    text-align: center;
-    opacity: 0.95;
-    transition: opacity 0.3s ease-in-out;
-
-
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        padding: 40px;
+        width: 95%;
+        max-width: 400px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        opacity: 0.95;
+        transition: opacity 0.3s ease-in-out;
     }
-
-
     .loader-sign {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #3498db;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1slinear infinite;
-      position: relative;
-      bottom: 454px;
-      left: 41%;
-  }
-
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        position: relative;
+        bottom: 454px;
+        left: 41%;
+    }
     .car-list12 {
-      display: flex
-  ;
-      flex-wrap: wrap;
-      padding: 10px;
-      gap: 20px;
-      position: relative;
-      right: 20px;
-  }
-
-
-  .header12 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px;
+        gap: 20px;
+        position: relative;
+        right: 20px;
+    }
+    .header12 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .car-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        font-family: 'Arial', sans-serif;
+        width: 300px;
+        margin: 20px auto;
+        transition: transform 0.2s ease;
+        position: relative;
+        top: 100px;
+    }
 }
-
-.car-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: 'Arial', sans-serif;
-  width: 300px;
-  margin: 20px auto;
-  transition: transform 0.2s ease;
-  position: relative;
-  top: 100px;
+@media (min-width:375px) and (max-width:424px){
+    .loader-sign {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        position: relative;
+        bottom: 454px;
+        left: 41%;
+    }
 }
-
-  }
-
-
-  @media (min-width:375px) and (max-width:424px){
+@media (min-width:425px) and (max-width:767px){
     .loader-sign {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #3498db;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1slinear infinite;
-      position: relative;
-      bottom: 454px;
-      left: 41%;
-  }
-
-
-
-  }
-
-
-  @media (min-width:425px) and (max-width:767px){
-
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        position: relative;
+        bottom: 454px;
+        left: 43%;
+    }
+}
+@media (min-width:768px) and (max-width:1023px){
     .loader-sign {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #3498db;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1slinear infinite;
-      position: relative;
-      bottom: 454px;
-      left: 43%;
-  }
-
-
-  }
-
-
-  @media (min-width:768px) and (max-width:1023px){
-
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        position: relative;
+        bottom: 454px;
+        left: 47%;
+    }
+}
+@media (min-width:1024px) and (max-width:1439px){
     .loader-sign {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #3498db;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1slinear infinite;
-      position: relative;
-      bottom: 454px;
-      left: 47%;
-  }
-  }
-  @media (min-width:1024px) and (max-width:1439px){
-    .loader-sign {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #3498db;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1slinear infinite;
-      position: relative;
-      bottom: 454px;
-      left: 47%;
-  }
-
-
-  }
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        position: relative;
+        bottom: 454px;
+        left: 47%;
+    }
+}

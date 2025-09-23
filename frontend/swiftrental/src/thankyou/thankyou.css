@@ -1,4 +1,4 @@
-/* thankyou.css */
+
 .thank-you-container22 {
   display: flex;
   flex-direction: column;
@@ -120,8 +120,7 @@
     display: flex;
     flex-direction: column;
     background-color: rgb(182, 191, 194);
-    /* gap: 10px; */
-    /* height: 11720px; */
+    
   }
 
   .thank-you-container22 {
@@ -173,8 +172,7 @@
     display: flex;
     flex-direction: column;
     background-color: rgb(182, 191, 194);
-    /* gap: 10px; */
-    /* height: 11720px; */
+    
   }
 
   .thank-you-container22 {
@@ -225,8 +223,7 @@
     display: flex;
     flex-direction: column;
     background-color: rgb(182, 191, 194);
-    /* gap: 10px; */
-    /* height: 11720px; */
+   
   }
 
   .thank-you-container22 {

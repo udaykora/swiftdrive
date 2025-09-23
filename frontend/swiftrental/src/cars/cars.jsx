@@ -70,7 +70,7 @@ const CarListComponent = () => {
               alt="passenger-icon"
             />
             {car.capacity}P |{" "}
-            {/* Conditional rendering for fuel type */}
+           
             {car.fuelType === "Electric" ? (
               <img
                 className="electric-svg"

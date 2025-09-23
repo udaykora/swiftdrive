@@ -1,54 +1,44 @@
-/* usersData.css */
-
 .users-data-container1 {
     padding: 20px;
-    background-color: #f5f5f5;  /* Light background color */
-    min-height: 100vh;           /* Full height of the viewport */
+    background-color: #f5f5f5;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;  
-    background-image: url("./—Pngtree—car\ rental\ broker\ or\ car_15188056.png");    
+    position: relative;
+    background-image: url("./—Pngtree—car\ rental\ broker\ or\ car_15188056.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-  }
-  
-  h2 {
+}
+h2 {
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
-  }
-  
-  .users-data-table {
+}
+.users-data-table {
     width: 100%;
-    max-width: 1000px;  /* Limit the width of the table */
+    max-width: 1000px;
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #fff;
-  }
-  
-  .users-data-table th, .users-data-table td {
+}
+.users-data-table th, .users-data-table td {
     padding: 10px;
     text-align: left;
     border: 1px solid #ddd;
-  }
-  
-  .users-data-table th {
+}
+.users-data-table th {
     background-color: #f2f2f2;
     color: #333;
-  }
-  
-  .users-data-table tr:hover {
+}
+.users-data-table tr:hover {
     background-color: #f1f1f1;
-  }
-  
-  .users-data-table td {
+}
+.users-data-table td {
     color: #555;
-  }
-  
-  /* Style for the close button */
-  .close-btns-add{
+}
+.close-btns-add {
     position: absolute;
     top: 40px;
     right: 240px;
@@ -57,208 +47,146 @@
     border: none;
     font-size: 20px;
     border-radius: 20px;
-   
     height: 30px;
     padding-left: 10px;
     padding-right: 10px;
-   
-    
     cursor: pointer;
-  }
-  
-  .close-btn:hover {
+}
+.close-btn:hover {
     background-color: darkred;
-  }
-  .buttonremove{
+}
+.buttonremove {
     background-color: red;
     border: none;
     padding: 10px;
     color: #f1f1f1;
     border-radius: 20px;
     cursor: pointer;
-
-  }
-
-
-  @media (min-width: 375px) and (max-width: 424px){
-
+}
+@media (min-width: 375px) and (max-width: 424px) {
     .users-data-container1 {
-      padding: 20px;
-      background-color: #f5f5f5;  /* Light background color */
-      min-height: 100vh;           /* Full height of the viewport */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;  
-      background-image: url("./—Pngtree—car\ rental\ broker\ or\ car_15188056.png");    
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
+        padding: 20px;
+        background-color: #f5f5f5;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        background-image: url("./—Pngtree—car\ rental\ broker\ or\ car_15188056.png");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
     }
-    
     h2 {
-      margin-bottom: 20px;
-      font-size: 24px;
-      color: #333;
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
     }
-    
     .users-data-table {
-      width: 100%;
-      max-width: 1000px;  /* Limit the width of the table */
-      border-collapse: collapse;
-      margin-top: 20px;
-      background-color: #fff;
+        width: 100%;
+        max-width: 1000px;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
     }
-    
     .users-data-table th, .users-data-table td {
-      padding: 10px;
-      text-align: left;
-      border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
     }
-    
     .users-data-table th {
-      background-color: #f2f2f2;
-      color: #333;
+        background-color: #f2f2f2;
+        color: #333;
     }
-    
     .users-data-table tr:hover {
-      background-color: #f1f1f1;
+        background-color: #f1f1f1;
     }
-    
     .users-data-table td {
-      color: #555;
+        color: #555;
     }
-    
-    /* Style for the close button */
     .close-btns-add {
-      position: absolute;
-      top: 40px;
-      right: 280px;
-      background-color: red;
-      color: white;
-      border: none;
-      font-size: 20px;
-      border-radius: 20px;
-     
-      height: 30px;
-      padding-left: 10px;
-      padding-right: 10px;
-     
-      
-      cursor: pointer;
+        position: absolute;
+        top: 40px;
+        right: 280px;
+        background-color: red;
+        color: white;
+        border: none;
+        font-size: 20px;
+        border-radius: 20px;
+        height: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+        cursor: pointer;
     }
-    
     .close-btn:hover {
-      background-color: darkred;
+        background-color: darkred;
     }
-    .buttonremove{
-      background-color: red;
-      border: none;
-      padding: 10px;
-      color: #f1f1f1;
-      border-radius: 20px;
-      cursor: pointer;
-  
+    .buttonremove {
+        background-color: red;
+        border: none;
+        padding: 10px;
+        color: #f1f1f1;
+        border-radius: 20px;
+        cursor: pointer;
     }
     .users-data-table-container {
-      overflow-x: auto;
-      width: 100%;
-      margin-top: 20px;
-  }
-
-
-  }
-
-  @media (min-width: 768px) and (max-width: 1023px){
-    .users-data-table-container {
-      overflow-x: auto;
-      width: 100%;
-      margin-top: 20px;
-  }
-  .close-btns-add {
-    position: absolute;
-    
-    right: 10px;
-    background-color: red;
-    color: white;
-    border: none;
-    font-size: 20px;
-    border-radius: 20px;
-    height: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-    cursor: pointer;
+        overflow-x: auto;
+        width: 100%;
+        margin-top: 20px;
+    }
 }
-
-
-
-
-
-
-
-  }
-
-
-  @media (min-width: 425px) and (max-width: 767px){
+@media (min-width: 768px) and (max-width: 1023px) {
     .users-data-table-container {
-      overflow-x: auto;
-      width: 100%;
-      margin-top: 20px;
-  }
-  .close-btns-add {
-    position: absolute;
-    
-    right: 10px;
-    background-color: red;
-    color: white;
-    border: none;
-    font-size: 20px;
-    border-radius: 20px;
-    height: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-    cursor: pointer;
-}
-
-
-
-
-
-
-
-  }
-
-
-  @media (min-width: 1024px) and (max-width: 1439px){
+        overflow-x: auto;
+        width: 100%;
+        margin-top: 20px;
+    }
     .close-btns-add {
-      position: absolute;
-      
-      right: 20px;
-      background-color: red;
-      color: white;
-      border: none;
-      font-size: 20px;
-      border-radius: 20px;
-      height: 30px;
-      padding-left: 10px;
-      padding-right: 10px;
-      cursor: pointer;
-  }
- 
-
-
-
-
-
-
-  }
-
-
-
-
-  
-
-
-
-
-  
+        position: absolute;
+        right: 10px;
+        background-color: red;
+        color: white;
+        border: none;
+        font-size: 20px;
+        border-radius: 20px;
+        height: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+        cursor: pointer;
+    }
+}
+@media (min-width: 425px) and (max-width: 767px) {
+    .users-data-table-container {
+        overflow-x: auto;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .close-btns-add {
+        position: absolute;
+        right: 10px;
+        background-color: red;
+        color: white;
+        border: none;
+        font-size: 20px;
+        border-radius: 20px;
+        height: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+        cursor: pointer;
+    }
+}
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .close-btns-add {
+        position: absolute;
+        right: 20px;
+        background-color: red;
+        color: white;
+        border: none;
+        font-size: 20px;
+        border-radius: 20px;
+        height: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+        cursor: pointer;
+    }
+}

@@ -41,16 +41,16 @@
 .detail-item, .input-container {
   display: flex;
   margin-bottom: 10px;
-  align-items: center; /* Vertically align labels and values/inputs */
+  align-items: center; 
 }
-.app-name1234 { /* Style for app name */
+.app-name1234 { 
   font-size: 44px;
   font-weight: bold;
   color: #b4a9a9; 
   display: inline-block;
 }
 
-.app-name12345 { /* Style for app name */
+.app-name12345 {
   font-size: 23px;
   font-weight: bold;
   color: #01010a; 
@@ -63,7 +63,7 @@
 .detail-label {
   font-weight: bold;
   margin-right: 10px;
-  width: 100px; /* Consistent label width */
+  width: 100px; 
 }
 .quote1 {
   font-weight: bold;
@@ -78,9 +78,7 @@
 
 
 
-.detail-value {
-  /* Style for displaying car details */
-}
+
 
 .rupee{
   height: 40px;
@@ -108,7 +106,7 @@
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s ease;
-  width: 100%; /* Make button full width */
+  width: 100%; 
 
 }
 

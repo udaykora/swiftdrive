@@ -20,11 +20,11 @@ const TokenRouteAdmin = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ token }), // send as object
+          body: JSON.stringify({ token }), 
         });
 
         const data = await response.json();
-        setIsValid(data.status); // backend should return {status: true/false}
+        setIsValid(data.status); 
       } catch (error) {
         console.error("Error verifying token:", error);
         setIsValid(false);
@@ -34,17 +34,17 @@ const TokenRouteAdmin = () => {
     verifyToken();
   }, [location.search]);
 
-  // While loading
+  
   if (isValid === null) {
     return <p>Checking token...</p>;
   }
 
-  // If invalid → go home
+ 
   if (isValid === false) {
     return <Navigate to="/" replace />;
   }
 
-  // If valid → show protected route
+ 
   return <Outlet />;
 };
 
