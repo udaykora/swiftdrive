@@ -241,26 +241,12 @@ app.post("/emailverify", async (req, res) => {
     const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
     const resetLink = `https://swiftdrive.vercel.app/signup?token=${token}&email=${encodeURIComponent(email)}`;
 
-const msg = {
-  to: email,
-  from: "udaykora777@gmail.com", 
-  replyTo: "udaykora777@gmail.com",
-  subject: "SwiftDrive Email Verification",
-  text: `Hi,
-
-Please click the link below to verify your email address:
-
-${resetLink}
-
-If you did not create a SwiftDrive account, please ignore this email.`,
-  html: `
-    <p>Hi,</p>
-    <p>Please click the link below to verify your email address:</p>
-    <p><a href="${resetLink}" style="background-color:#2575fc;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;">Verify Email</a></p>
-    <p>If you did not create a SwiftDrive account, please ignore this email.</p>
-  `
-};
-
+    const msg = {
+      to: email,
+      from: "udaykora777@gmail.com", 
+      subject: "Email Verification",
+      html: `<p>Click the link below to verify your email:</p><a href="${resetLink}">Verify Email</a>`,
+    };
 
     try {
       await sgMail.send(msg);
