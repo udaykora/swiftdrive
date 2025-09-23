@@ -230,33 +230,50 @@ app.post("/bookedcars", (req, res) => {
 });
 
 app.post("/emailverify", async (req, res) => {
-  let { email } = req.body;
-  let query2 = "SELECT * FROM swiftrental WHERE email = ?";
+  try {
+    // Strip invalid Authorization header if it exists
+    if (req.headers.authorization) delete req.headers.authorization;
 
-  db.query(query2, [email], async (err, results) => {
-    if (err) return res.status(500).json({ status: false, message: err.message });
+    const { email } = req.body;
 
-    if (results.length > 0) {
-      return res.json({ status: false, message: "Email Already Exists" });
+    if (!email) {
+      return res.status(400).json({ status: false, message: "Email is required" });
     }
 
-    const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
-    const resetLink = `https://swiftdrive.vercel.app/signup?token=${token}&email=${encodeURIComponent(email)}`;
+    // Check if email already exists
+    const query = "SELECT * FROM swiftrental WHERE email = ?";
+    db.query(query, [email], async (err, results) => {
+      if (err) return res.status(500).json({ status: false, message: err.message });
 
-    const msg = {
-      to: email,
-      from: "udaykora777@gmail.com", 
-      subject: "Email Verification",
-      html: `<p>Click the link below to verify your email:</p><a href="${resetLink}">Verify Email</a>`,
-    };
+      if (results.length > 0) {
+        return res.json({ status: false, message: "Email Already Exists" });
+      }
 
-    try {
-      await sgMail.send(msg);
-      return res.json({ status: true, message: "Verification sent" });
-    } catch (error) {
-      return res.status(500).json({ status: false, message: error.message });
-    }
-  });
+      // Generate token
+      const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
+      const verifyLink = `https://swiftdrive.vercel.app/signup?token=${token}&email=${encodeURIComponent(email)}`;
+
+      // Send email via SendGrid
+      const msg = {
+        to: email,
+        from: "udaykora777@gmail.com",
+        subject: "Email Verification",
+        text: `Click the link to verify your email: ${verifyLink}`,
+        html: `<p>Click the link to verify your email:</p><a href="${verifyLink}">Verify Email</a>`,
+      };
+
+      try {
+        await sgMail.send(msg);
+        return res.json({ status: true, message: "Verification sent" });
+      } catch (sendError) {
+        console.error("SendGrid Error:", sendError);
+        return res.status(500).json({ status: false, message: sendError.message });
+      }
+    });
+  } catch (error) {
+    console.error("Error in /emailverify:", error);
+    return res.status(500).json({ status: false, message: error.message });
+  }
 });
 
 
