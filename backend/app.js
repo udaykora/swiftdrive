@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const streamifier = require("streamifier");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
+// require('dotenv').config();
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const sgMail = require('@sendgrid/mail');
 
 sgMail.setApiKey(process.env.sendgridkey);
+
 
 
 cloudinary.config({
@@ -179,12 +181,18 @@ app.post("/passwordverifylink", (req, res) => {
       const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
       const resetLink = `https://swiftdrive.vercel.app/forgotpasswordui?token=${token}&email=${encodeURIComponent(email)}`;
 
-  const msg = {
-      to: email,
-      from: "udaykora777@gmail.com", 
-      subject: "Email Verification",
-      html: `<p>Click the link below to verify your email:</p><a href="${resetLink}">Verify Email</a>`,
-    };
+   const msg = {
+  to: email,
+  from: "udaykora777@gmail.com", 
+  replyTo: "udaykora777@gmail.com",
+  subject: "SwiftDrive Password Reset",
+  text: `Hi, click this link to reset your password: ${resetLink}`,
+  html: `<p>Hi,</p>
+         <p>Click the link below to reset your SwiftDrive password:</p>
+         <a href="${resetLink}">Reset Password</a>
+         <p>If you did not request this, ignore this email.</p>`
+};
+
 
       try {
         await sgMail.send(msg);
