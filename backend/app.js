@@ -16,7 +16,9 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const key = "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"
+
+sgMail.setApiKey(key);
 
 cloudinary.config({
   cloud_name: "ds1ysygvb",
