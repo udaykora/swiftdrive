@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const sgMail = require('@sendgrid/mail');
 
-sgMail.setApiKey("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");
+sgMail.setApiKey(process.env.sendgridkey);
 
 
 cloudinary.config({
