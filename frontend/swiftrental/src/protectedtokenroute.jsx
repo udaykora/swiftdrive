@@ -16,7 +16,7 @@ const TokenRouteAdmin = () => {
           return;
         }
 
-        const response = await fetch("http://localhost:8085/tokenverify", {
+        const response = await fetch("https://swiftdrive.onrender.com/tokenverify", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
