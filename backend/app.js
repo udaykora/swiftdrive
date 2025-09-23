@@ -19,8 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const sgMail = require('@sendgrid/mail');
 
-sgMail.setApiKey("SG.DZNuraXPTBOAyVkISwAyuA.uDsv0qtkIsRZI2VGyBat6CrreLcukA3uMEe0rMOv8Mk"
-);
+sgMail.setApiKey(process.env.sendgridkey);
 
 
 
