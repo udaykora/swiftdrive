@@ -179,12 +179,18 @@ app.post("/passwordverifylink", (req, res) => {
       const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
       const resetLink = `https://swiftdrive.vercel.app/forgotpasswordui?token=${token}&email=${encodeURIComponent(email)}`;
 
-      const msg = {
-        to: email,
-        from: "udaykora777@gmail.com", 
-        subject: "Password Reset",
-        html: `<a href="${resetLink}">Reset Password</a>`,
-      };
+   const msg = {
+  to: email,
+  from: "udaykora777@gmail.com", 
+  replyTo: "udaykora777@gmail.com",
+  subject: "SwiftDrive Password Reset",
+  text: `Hi, click this link to reset your password: ${resetLink}`,
+  html: `<p>Hi,</p>
+         <p>Click the link below to reset your SwiftDrive password:</p>
+         <a href="${resetLink}">Reset Password</a>
+         <p>If you did not request this, ignore this email.</p>`
+};
+
 
       try {
         await sgMail.send(msg);
@@ -235,12 +241,26 @@ app.post("/emailverify", async (req, res) => {
     const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
     const resetLink = `https://swiftdrive.vercel.app/signup?token=${token}&email=${encodeURIComponent(email)}`;
 
-    const msg = {
-      to: email,
-      from: "udaykora777@gmail.com", 
-      subject: "Email Verification",
-      html: `<p>Click the link below to verify your email:</p><a href="${resetLink}">Verify Email</a>`,
-    };
+const msg = {
+  to: email,
+  from: "SwiftDrive Support <udaykora777@gmail.com>", 
+  replyTo: "udaykora777@gmail.com",
+  subject: "SwiftDrive Email Verification",
+  text: `Hi,
+
+Please click the link below to verify your email address:
+
+${resetLink}
+
+If you did not create a SwiftDrive account, please ignore this email.`,
+  html: `
+    <p>Hi,</p>
+    <p>Please click the link below to verify your email address:</p>
+    <p><a href="${resetLink}" style="background-color:#2575fc;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;">Verify Email</a></p>
+    <p>If you did not create a SwiftDrive account, please ignore this email.</p>
+  `
+};
+
 
     try {
       await sgMail.send(msg);
