@@ -14,15 +14,10 @@ const Login = () => {
     e.preventDefault();
     setTemp(true);
 
-    let response = await fetch(`https://swiftdrive.onrender.com/login`, {
+    let response = await fetch("https://swiftdrive.onrender.com/login", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
     });
 
     const data = await response.json();
@@ -30,37 +25,37 @@ const Login = () => {
 
     if (data.status === "adminsuccess") {
       localStorage.setItem("admindata", JSON.stringify({ email, password }));
-      navigate("/cars", {
-        state: {
-          userdatas: data.message,
-        },
-      });
+      navigate("/cars", { state: { userdatas: data.message } });
     }
-
     if (data.status === "failed") {
       setUserMessage(data.message);
       setAssign(true);
       setTemp(false);
-      setTimeout(() => {
-        setAssign(false);
-      }, 3000);
+      setTimeout(() => setAssign(false), 3000);
     }
-
     if (data.message?.status === "deactive") {
       setUserMessage("Your Account Has been deactivated. Contact Admin.");
       setAssign(true);
       setTemp(false);
-      setTimeout(() => {
-        setAssign(false);
-      }, 3000);
+      setTimeout(() => setAssign(false), 3000);
       return;
     }
-
     if (data.status === "success") {
       localStorage.setItem("userdatas", JSON.stringify(data.message));
       navigate("/usercars");
     }
   };
+
+  const autofillDemoUser = () => {
+  setEmail("udaysaketh904@gmail.com");
+  setPassword("Udaykora@2002");
+};
+
+const autofillDemoAdmin = () => {
+  setEmail("udaykora777@gmail.com");
+  setPassword("Udaykora@2002");
+};
+
 
   return (
     <>
@@ -83,6 +78,7 @@ const Login = () => {
                 className="input-field"
               />
             </div>
+
             <div className="input-group">
               <input
                 type="password"
@@ -93,6 +89,7 @@ const Login = () => {
                 className="input-field"
               />
             </div>
+
             <button type="submit" className="submit-btn">
               Log In
             </button>
@@ -105,39 +102,28 @@ const Login = () => {
                 Sign Up
               </Link>
             </p>
-
             <p style={{ marginTop: "2px" }}>
               <Link to="/forgotpasslink" className="signup-link">
                 Forgot Password
               </Link>
             </p>
+
             {assign && <h1 className="failed-message">{userMessage}</h1>}
           </div>
 
-          {/* Demo credentials section */}
-          <div className="demo-credentials">
-            <h3 className="editing">Demo Accounts</h3>
-            <div className="demo-block">
-              <h4>🔑 Admin</h4>
-              <p>
-                <strong>Email:</strong> udaykora777@gmail.com
-              </p>
-              <p>
-                <strong>Password:</strong> Udaykora@2002
-              </p>
-            </div>
-            <div className="demo-block">
-              <h4>👤 User</h4>
-              <p>
-                <strong>Email:</strong> udaysaketh904@gmail.com
-              </p>
-              <p>
-                <strong>Password:</strong> Udaykora@2002
-              </p>
-            </div>
-          </div>
+          
+         <div className="demo-link-container">
+  <p className="demo-text">
+    Try demo as <span className="demo-link" onClick={autofillDemoUser}>User</span>
+  </p>
+  <p className="demo-text">
+    Try demo as <span className="demo-link" onClick={autofillDemoAdmin}>Admin</span>
+  </p>
+</div>
+
         </div>
       </div>
+
       {temp && <div className="loader"></div>}
     </>
   );
