@@ -48,7 +48,7 @@ const Login = () => {
 
   const autofillDemoUser = () => {
   setEmail("udaysaketh904@gmail.com");
-  setPassword("Udaykora@2002");
+  setPassword(12345678);
 };
 
 const autofillDemoAdmin = () => {
