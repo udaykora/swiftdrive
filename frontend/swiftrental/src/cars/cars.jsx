@@ -120,8 +120,16 @@ const CarListComponent = () => {
   return (
     <div className="car-list-container">
       <div className="navbar">
-        <h1 className="appname">SwiftDrive</h1>
-        <h1 className="portal">Admin Portal</h1>
+        <div>
+           <h1 >SwiftDrive</h1>
+
+        </div>
+        <div>
+           <h1>Admin Portal</h1>
+
+        </div>
+       
+       
         <div className="carsus">
           <div className="user-info">
             <button className="user-data-btn" onClick={usersdata}>
