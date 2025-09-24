@@ -40,7 +40,7 @@ const db = mysql.createPool({
 
 db.getConnection((err) => {
   if (err) console.log(err);
-  else console.log("mysql database connected");
+  else console.log("mysql database connected...");
 });
 
 app.get("/users", (req, res) => {
