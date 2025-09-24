@@ -1,97 +1,124 @@
+
 .login-body {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-image: url("./—Pngtree—car\ rental\ broker\ or\ car_15188056.png");
-  background-size: cover;
-  background-position: center;
-  color: white;
-  overflow: hidden;
-}
-.login-body1{
-  filter: blur(8px);
-}
-.admin-credentials {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #1b85d1;
-  border-radius: 8px;
-  color: white;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.admin-credentials h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-.admin-credentials p {
-  font-size: 16px;
-  margin: 5px 0;
-  font-weight: bold;
-}
-.login-form-container {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  padding: 40px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  opacity: 0.95;
-  transition: opacity 0.3s ease-in-out;
-  margin-left: -405px;
-}
-.login-form-container h2 {
-  position: relative;
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-.input-group {
-  margin-bottom: 20px;
-}
-.input-field {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-}
-.input-field:focus {
-  border-color: #6a11cb;
-}
-.submit-btn {
-  width: 100%;
-  padding: 12px;
-  background-color: #2575fc;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-}
-.submit-btn:hover {
-  background-color: #6a11cb;
-}
-.editing{
-}
-.new-to-account {
-  margin-top: 20px;
-  color: black;
-}
-.new-to-account .signup-link {
-  color: #2575fc;
-  cursor: pointer;
-}
-.failed-message {
-  color: red;
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 15px;
-}
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("./—Pngtree—car\ rental\ broker\ or\ car_15188056.png");
+    
+    background-size: cover;
+    background-position: center;
+    color: white;
+    overflow: hidden;
+   
+  }
+  .login-body1{
+    filter: blur(8px);
+
+  }
+
+  .admin-credentials {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #1b85d1;
+    border-radius: 8px;
+    color: white;
+    text-align: left;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .admin-credentials h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .admin-credentials p {
+    font-size: 16px;
+    margin: 5px 0;
+    font-weight: bold;
+  }
+  
+  
+  
+  .login-form-container {
+    background: rgba(255, 255, 255, 0.9); 
+    border-radius: 10px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); 
+    text-align: center;
+    opacity: 0.95;
+    transition: opacity 0.3s ease-in-out;
+    margin-left: -405px;
+  }
+  
+  .login-form-container h2 {
+    position: relative;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+ 
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+  }
+  
+  .input-field:focus {
+    border-color: #6a11cb;
+  }
+  
+ 
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: #6a11cb;
+  }
+
+  .editing{
+
+  }
+  
+ 
+  .new-to-account {
+    margin-top: 20px;
+    color: black;
+  }
+  
+  .new-to-account .signup-link {
+    color: #2575fc;
+    cursor: pointer;
+  }
+  
+  .failed-message {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+
+
 .container {
   position: relative;
   height: 100vh;
@@ -100,16 +127,19 @@
   justify-content: flex-start;
   align-items: center;
 }
+
 .app-name {
   position: relative;
-  font-size: 36px;
-  font-weight: bold;
-  color: rgb(23, 151, 190);
-  letter-spacing: 2px;
-  text-align: center;
-  text-transform: uppercase;
-  right: 650px;
+    /* top: 20px; */
+    font-size: 36px;
+    font-weight: bold;
+    color: rgb(23, 151, 190);
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    right: 650px;
 }
+
 .quote {
   position: relative;
   font-size: 18px;
@@ -119,17 +149,19 @@
   width: 80%;
   right: 650px;
 }
+
 .loader {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #3498db;
-  border-radius: 50%;
-  width: 50px;
+  border: 8px solid #f3f3f3;  
+  border-top: 8px solid #3498db;  
+  border-radius: 50%;  
+  width: 50px; 
   height: 50px;
   animation: spin 1s linear infinite;
   position: relative;
   bottom: 420px;
   left: 670px;
 }
+
 .demo-credentials {
   margin-top: 2rem;
   padding: 1rem;
@@ -137,12 +169,14 @@
   border-radius: 12px;
   background: #f9f9f9;
 }
+
 .demo-credentials h3 {
   text-align: center;
   margin-bottom: 1rem;
   font-size: 1.2rem;
   color: #333;
 }
+
 .demo-block {
   margin-bottom: 1rem;
   padding: 0.75rem 1rem;
@@ -150,118 +184,407 @@
   background: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
+
 .demo-block h4 {
   margin: 0 0 0.5rem;
   font-size: 1rem;
   color: #444;
 }
+
 .demo-block p {
   margin: 0.2rem 0;
   font-size: 0.9rem;
   color: #555;
 }
+
+
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+
+
 @media (max-width:374px) {
   .login-form-container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 40px;
     width: 95%;
+    max-width: 400px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    opacity: 0.95;
+    transition: opacity 0.3sease-in-out;
     margin-left: -315px;
     margin-top: 93px;
-    height: 520px;
-  }
+    height: 410px;
+}
   .app-name{
-    right: inherit;
+
+  position: relative;
+    /* top: 20px; */
+    font-size: 36px;
+    font-weight: bold;
     color: rgb(22, 161, 225);
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    right: inherit;
   } 
+
   .loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1slinear infinite;
+    position: relative;
     bottom: 340px;
     left: 120px;
-  }
-  .quote {
-    color: #040601;
-    right: 0px;
-  }
 }
+
+
+
+  .quote {
+    position: relative;
+    font-size: 18px;
+    font-style: italic;
+    color: #040601;
+    text-align: center;
+    width: 80%;
+    right: 0px;
+
+}
+}
+
+
 @media (min-width:375px) and (max-width:424px){
   .login-form-container{
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 40px;
     width: 95%;
+    max-width: 400px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center;
+    opacity: 0.95;
+    transition: opacity 0.3s ease-in-out;
     margin-left: -315px;
     margin-top: 93px;
-  }
+    }
+
   .loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1slinear infinite;
+    position: relative;
     bottom: 351px;
     left: 146px;
-  }
-  .app-name{
-    right: -10px;
-    color: rgb(0 196 255);
-  } 
-  .quote {
-    right: -10px;
-    color: #0a0b08;
-  }
 }
+
+
+  
+  .app-name{
+
+  position: relative;
+    /* top: 20px; */
+    font-size: 36px;
+    font-weight: bold;
+    color: rgb(0 196 255);
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    right: -10px;
+  } 
+
+  .quote {
+    position: relative;
+    font-size: 18px;
+    font-style: italic;
+    color: #0a0b08;
+    text-align: center;
+    width: 80%;
+    right: -10px;
+
+}
+}
+
+
 @media (min-width:425px) and (max-width:767px){
   .login-form-container{
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 40px;
     width: 95%;
+    max-width: 400px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center;
+    opacity: 0.95;
+    transition: opacity 0.3s ease-in-out;
     margin-left: -315px;
     margin-top: 93px;
   }
+
   .loader{
-    bottom: 368px;
-    left: 171px;
+   
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1slinear infinite;
+      position: relative;
+      bottom: 368px;
+      left: 171px;
+  
   }
   .app-name{
+
+  position: relative;
+    /* top: 20px; */
+    font-size: 36px;
+    font-weight: bold;
+    color: rgb(0 196 255);
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+   
     right: -33px;
+
   } 
+
   .quote {
+    position: relative;
+    font-size: 18px;
+    font-style: italic;
+    color: #0a0b08;
+    text-align: center;
+    width: 80%;
     right: -33px;
-  }
+
+
 }
+}
+
+
 @media (min-width:768px) and (max-width:1023px){
   .login-form-container{
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 40px;
     width: 95%;
+    max-width: 400px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center;
+    opacity: 0.95;
+    transition: opacity 0.3s ease-in-out;
     margin-left: -315px;
     margin-top: 93px;
+
   }
   .app-name{
+
+  position: relative;
+    /* top: 20px; */
+    font-size: 36px;
+    font-weight: bold;
+    color: rgb(0 196 255);
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+   
     right: -33px;
+
   } 
-  .loader {
-    bottom: 376px;
-    left: 357px;
+
+  
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1slinear infinite;
+      position: relative;
+      bottom: 376px;
+      left: 357px;
   }
+  
+
   .quote {
+    position: relative;
+    font-size: 18px;
+    font-style: italic;
+    color: #0a0b08;
+    text-align: center;
+    width: 80%;
     right: -33px;
-  }
+
+
 }
+}
+
+
 @media (min-width:1024px) and (max-width:1439px){
   .login-body {
     display: flex;
-    justify-content: center;
-    align-items: center;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url("./—Pngtree—car\ rental\ broker\ or\ car_15188056.png");
+      
+      background-size: cover;
+      background-position: center;
+      color: white;
+      overflow: hidden;
+      
+      
+    }
+
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1slinear infinite;
+      position: relative;
+      bottom: 476px;
+      left: 458px;
+  }
+    
+   
+    .login-form-container {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); 
+      text-align: center;
+      opacity: 0.95;
+      transition: opacity 0.3s ease-in-out;
+      margin-left: -354px;
+      margin-top: 93px;
+    }
+    
+    .login-form-container h2 {
+      position: relative;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    
+  
+    .input-group {
+      margin-bottom: 20px;
+    }
+    
+    .input-field {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+    }
+    
+    .input-field:focus {
+      border-color: #6a11cb;
+    }
+    
+    
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #2575fc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    
+    .submit-btn:hover {
+      background-color: #6a11cb;
+    }
+    
+   
+    .new-to-account {
+      margin-top: 20px;
+      color: black;
+    }
+    
+    .new-to-account .signup-link {
+      color: #2575fc;
+      cursor: pointer;
+    }
+    
+    .failed-message {
+      color: red;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  
+   
+  .container {
+    position: relative;
     height: 100vh;
-    background-image: url("./—Pngtree—car\ rental\ broker\ or\ car_15188056.png");
-    background-size: cover;
-    background-position: center;
-    color: white;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
   }
-  .loader {
-    bottom: 476px;
-    left: 458px;
+  
+  .app-name {
+    position: relative;
+      /* top: 20px; */
+      font-size: 36px;
+      font-weight: bold;
+      color: rgb(23, 151, 190);
+      letter-spacing: 2px;
+      text-align: center;
+      text-transform: uppercase;
+      right: 370px;
   }
-  .login-form-container {
-    width: 100%;
-    margin-left: -354px;
-    margin-top: 93px;
-  }
-  .app-name{
-    right: 370px;
-  }
+  
   .quote {
+    position: relative;
+    font-size: 18px;
+    font-style: italic;
+    color: #0d1203;
+    text-align: center;
+    width: 80%;
     right: 370px;
   }
 }
+
+
+.demo-link-container {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.demo-text {
+  font-size: 14px;
+  color: #333;
+}
+
+.demo-link {
+  color: #2575fc;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.demo-link:hover {
+  color: #6a11cb;
+}
+
