@@ -121,7 +121,7 @@ app.post("/emailverify", (req, res) => {
 
     try {
       await resend.emails.send({
-        from: "SwiftDrive <onboarding@resend.dev>",
+        from: "udaykora777@gmail.com",
         to: email,
         subject: "SwiftDrive Email Verification",
         html: `
@@ -166,7 +166,7 @@ app.post("/passwordverifylink", (req, res) => {
 
     try {
       await resend.emails.send({
-        from: "SwiftDrive <onboarding@resend.dev>",
+        from:  "udaykora777@gmail.com",
         to: email,
         subject: "SwiftDrive Password Reset",
         html: `<a href="${resetLink}">Reset Password</a>`,
