@@ -1,0 +1,49 @@
+.about-container {
+  min-height: 100vh;
+  background: linear-gradient(to right, #f5f7fa, #e4ecf7);
+  padding: 40px 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.about-header h1 {
+  font-size: 36px;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.about-tagline {
+  font-size: 16px;
+  color: #555;
+}
+
+.about-content {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.about-content p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 18px;
+}
+
+.about-content strong {
+  color: #007bff;
+}
+
+.about-footer-text {
+  margin-top: 25px;
+  font-weight: 600;
+  color: #222;
+  text-align: center;
+}

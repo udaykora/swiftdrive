@@ -16,6 +16,7 @@ import EmailVerify from "./emailverify/emailverify";
 import ForgotPassword from "./forgotpassword/forgotpassword";
 import ForgotPasswordUI from "./resetpassword/resetpassword";
 import TokenRouteAdmin from "./protectedtokenroute";
+import AboutPage from "./aboutpage/aboutpage";
 
 // import UserDataTable from "./usersdata/usersdata";
 
@@ -36,6 +37,7 @@ function App() {
          
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+             <Route path="/about" element={<AboutPage />} />
           {/* <Route path="/cars" element={<CarListComponent />} /> */}
           {/* <Route path="/usersdata" element={<UserDataTable />} /> */}
           {/* <Route path="/addcar" element={<CarInfoForm />} /> */}
