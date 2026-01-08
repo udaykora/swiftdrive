@@ -203,7 +203,7 @@ app.post("/emailverify", async (req, res) => {
 
    const msg = {
   to: email,
-  from: "SwiftDrive <udaykora777@gmail.com>", 
+  from: "SwiftDrive <krithunga@gmail.com>", 
   subject: "SwiftDrive Email Verification",
   text: `Hi,
 
