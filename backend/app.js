@@ -146,8 +146,8 @@ app.post("/passwordverifylink", (req, res) => {
 
     const msg = {
       to: email,
-      from: "SwiftDrive <krithunga@gmail.com>", 
-      replyTo: "krithunga@gmail.com",            
+      from: "SwiftDrive <korasridevi00@gmail.com>", 
+      replyTo: "korasridevi00@gmail.com",            
       subject: "SwiftDrive Password Reset",
       html: `
         <p>Hi,</p>
