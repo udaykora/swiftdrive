@@ -7,32 +7,26 @@ const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const streamifier = require("streamifier");
 const jwt = require("jsonwebtoken");
-
-const SibApiV3Sdk = require("@getbrevo/brevo");
+const Brevo = require("@getbrevo/brevo");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-
-const client = SibApiV3Sdk.ApiClient.instance;
-const apiKey = client.authentications["api-key"];
-apiKey.apiKey = process.env.BREVO_API_KEY;
-
-const brevoClient = new SibApiV3Sdk.TransactionalEmailsApi();
+// ---------------- BREVO EMAIL ---------------- //
+const brevoApiInstance = new Brevo.TransactionalEmailsApi();
+brevoApiInstance.authentications["api-key"].apiKey = process.env.BREVO_API_KEY;
 
 const sendEmail = async ({ to, subject, html, text }) => {
   try {
-    await brevoClient.sendTransacEmail({
-      sender: {
-        name: "Swift drive",
-        email: "udaykora777@gmail.com", 
-      },
-      to: [{ email: to }],
-      subject,
-      htmlContent: html,
-      textContent: text,
-    });
+    const sendSmtpEmail = new Brevo.SendSmtpEmail();
+    sendSmtpEmail.sender = { name: "Swift Drive", email: "udaykora777@gmail.com" };
+    sendSmtpEmail.to = [{ email: to }];
+    sendSmtpEmail.subject = subject;
+    sendSmtpEmail.htmlContent = html;
+    sendSmtpEmail.textContent = text;
+
+    await brevoApiInstance.sendTransacEmail(sendSmtpEmail);
   } catch (error) {
     console.error("Brevo Error:", error.response?.body || error);
     throw error;
