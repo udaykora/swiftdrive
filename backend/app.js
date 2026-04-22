@@ -7,19 +7,19 @@ const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const streamifier = require("streamifier");
 const jwt = require("jsonwebtoken");
-const Brevo = require("@getbrevo/brevo");
+const { TransactionalEmailsApi, SendSmtpEmail } = require("@getbrevo/brevo");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 // ---------------- BREVO EMAIL ---------------- //
-const brevoApiInstance = new Brevo.TransactionalEmailsApi();
+const brevoApiInstance = new TransactionalEmailsApi();
 brevoApiInstance.authentications["api-key"].apiKey = process.env.BREVO_API_KEY;
 
 const sendEmail = async ({ to, subject, html, text }) => {
   try {
-    const sendSmtpEmail = new Brevo.SendSmtpEmail();
+    const sendSmtpEmail = new SendSmtpEmail();
     sendSmtpEmail.sender = { name: "Swift Drive", email: "udaykora777@gmail.com" };
     sendSmtpEmail.to = [{ email: to }];
     sendSmtpEmail.subject = subject;
