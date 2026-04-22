@@ -6,7 +6,7 @@ const cloudinary = require("cloudinary").v2;
 const bodyParser = require("body-parser");
 const streamifier = require("streamifier");
 const jwt = require("jsonwebtoken");
-const sgMail = require('@sendgrid/mail');
+
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -16,11 +16,13 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const sendGridApiKey = process.env.SENDGRID_API_KEY;
+const brevo = require('@getbrevo/brevo');
 
-
-
-sgMail.setApiKey(sendGridApiKey.trim());
+const brevoClient = new brevo.TransactionalEmailsApi();
+brevoClient.setApiKey(
+  brevo.TransactionalEmailsApiApiKeys.apiKey,
+  process.env.BREVO_API_KEY 
+);
 
 cloudinary.config({
   cloud_name: "ds1ysygvb",
@@ -37,6 +39,26 @@ const db = mysql.createPool({
   connectionLimit: 140,
   queueLimit: 0,
 });
+
+
+
+const sendEmail = async ({ to, subject, html, text }) => {
+  try {
+    await brevoClient.sendTransacEmail({
+      sender: {
+        name: "SwiftDrive",
+        email: "udaykora777@gmail.com", 
+      },
+      to: [{ email: to }],
+      subject,
+      htmlContent: html,
+      textContent: text,
+    });
+  } catch (error) {
+    console.error("Brevo Error:", error);
+    throw error;
+  }
+};
 
 db.getConnection((err) => {
   if (err) console.log(err);
@@ -134,43 +156,36 @@ app.post("/forgotpassword", (req, res) => {
   });
 });
 
+
 app.post("/passwordverifylink", (req, res) => {
   const { email } = req.body;
 
   db.query("SELECT * FROM swiftrental WHERE email = ?", [email], async (err, results) => {
-    if (err) return res.status(500).json({ status: false, message: err.message });
+    if (err) return res.status(500).json({ status: false });
     if (results.length === 0) return res.json({ status: false, message: "Email not found" });
 
     const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
     const resetLink = `https://swiftdrive.vercel.app/forgotpasswordui?token=${token}&email=${encodeURIComponent(email)}`;
 
-    const msg = {
-      to: email,
-      from: "SwiftDrive <krithunga@gmail.com>", 
-      replyTo: "krithunga@gmail.com",            
-      subject: "SwiftDrive Password Reset",
-      html: `
-        <p>Hi,</p>
-        <p>Click the button below to reset your SwiftDrive password:</p>
-        <a href="${resetLink}" style="
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: white;
-            background-color: #007bff;
-            text-decoration: none;
-            border-radius: 5px;
-        ">Reset Password</a>
-        <p>If you did not request this, ignore this email.</p>
-      `
-    };
+    const html = `
+      <p>Hi,</p>
+      <p>Click below to reset your password:</p>
+      <a href="${resetLink}" style="padding:10px 20px;background:#007bff;color:white;text-decoration:none;">
+        Reset Password
+      </a>
+    `;
 
     try {
-      await sgMail.send(msg);
-      return res.json({ status: true, message: "Verification email sent" });
-    } catch (error) {
-      console.error("SendGrid Error:", error.response ? error.response.body : error);
-      return res.status(500).json({ status: false, message: "Failed to send email" });
+      await sendEmail({
+        to: email,
+        subject: "SwiftDrive Password Reset",
+        html,
+        text: `Reset your password: ${resetLink}`
+      });
+
+      res.json({ status: true, message: "Email sent" });
+    } catch {
+      res.status(500).json({ status: false, message: "Email failed" });
     }
   });
 });
@@ -190,50 +205,38 @@ app.post("/bookedcars", (req, res) => {
   });
 });
 
+
 app.post("/emailverify", async (req, res) => {
   const { email } = req.body;
-  if (!email) return res.status(400).json({ status: false, message: "Email is required" });
 
   db.query("SELECT * FROM swiftrental WHERE email = ?", [email], async (err, results) => {
-    if (err) return res.status(500).json({ status: false, message: err.message });
-    if (results.length > 0) return res.json({ status: false, message: "Email Already Exists" });
+    if (err) return res.status(500).json({ status: false });
+
+    if (results.length > 0)
+      return res.json({ status: false, message: "Email exists" });
 
     const token = jwt.sign({ userId: email }, "superkey", { expiresIn: "1h" });
     const verifyLink = `https://swiftdrive.vercel.app/signup?token=${token}&email=${encodeURIComponent(email)}`;
 
-   const msg = {
-  to: email,
-  from: "SwiftDrive <krithunga@gmail.com>", 
-  subject: "SwiftDrive Email Verification",
-  text: `Hi,
-
-Click the link below to verify your SwiftDrive account:
-${verifyLink}
-
-If you did not request this, ignore this email.`,
-  html: `
-    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+    const html = `
       <p>Hi,</p>
-      <p>Click the link below to verify your SwiftDrive account:</p>
-      <p>
-        <a href="${verifyLink}" style="background-color:#1a73e8; color:#fff; padding:10px 20px; text-decoration:none; border-radius:5px;">
-          Verify Email
-        </a>
-      </p>
-      <p>If you did not request this, you can safely ignore this email.</p>
-      <hr style="border:none; border-top:1px solid #eee;">
-      <p style="font-size:12px; color:#999;">SwiftDrive Team</p>
-    </div>
-  `,
-  replyTo: "udaykora777@gmail.com", 
-};
-
+      <p>Verify your account:</p>
+      <a href="${verifyLink}" style="padding:10px 20px;background:#1a73e8;color:white;text-decoration:none;">
+        Verify Email
+      </a>
+    `;
 
     try {
-      await sgMail.send(msg);
-      return res.json({ status: true, message: "Verification email sent" });
-    } catch (error) {
-      return res.status(500).json({ status: false, message: error.message });
+      await sendEmail({
+        to: email,
+        subject: "SwiftDrive Email Verification",
+        html,
+        text: `Verify your account: ${verifyLink}`
+      });
+
+      res.json({ status: true, message: "Verification sent" });
+    } catch {
+      res.status(500).json({ status: false });
     }
   });
 });
